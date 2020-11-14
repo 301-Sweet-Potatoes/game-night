@@ -1,10 +1,10 @@
 # game-night
 
-## Deanna Johnson
+Game Night is an app that allows you to setup your perfect game night in minutes! Customize a trivia game, pick out board games, and setup a party playlist!
 
-## Logan Jones
+## group members
 
-## Michael Campbell
-
-
-## Michael Mandell
+* Deanna Johnson
+* Logan Jones
+* Michael Campbell
+* Michael Mandell
