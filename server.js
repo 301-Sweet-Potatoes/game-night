@@ -114,17 +114,19 @@ function homeHandler(req, res) {
 
 // -------- Playlist Stuff --------------//
 
-// Route
-app.get('/search/playlist', playlistHandler);
+// Routes
+app.get('/playlist', playlistHandler);
+app.post('/playlist', searchPlaylistHandler);
 
-// Handler
+// Handlers
 function playlistHandler(req, res) {
   res.status(200).render('pages/playlist');
 }
 
 
-
-
+function searchPlaylistHandler(req, res) {
+  console.log(req.body);
+}
 
 
 
