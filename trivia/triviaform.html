@@ -19,18 +19,13 @@
 
         <label for="category"><b>Category</b></label>
 
-        <label for="music">Music</label><br>
-        <input type="radio" id="music" name="category" value="Music">
-
-        <label for="movies">Movies</label><br>
-        <input type="radio" id="movies" name="category" value="Movies">
-
-        <label for="things">Things</label><br>
-        <input type="radio" id="things name="category" value="Things">
-
-        <label for="other things">Other Things</label><br>
-        <input type="radio" id="things" name="category" value="Other Things>
-
+        <label for="category">Choose a Category:</label>
+        <select id="category" name="category">
+          <option value="music">Music</option>
+          <option value="movies">Movies</option>
+          <option value="general knowledge">General Knowledge</option>
+          <option value="video games">Video Games</option>
+        </select>
 
         <button type="submit" class="btn">Save</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
