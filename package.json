@@ -1,0 +1,28 @@
+{
+  "name": "game-night",
+  "version": "1.0.0",
+  "description": "Game Night is an app that allows the users to setup your perfect game night in minutes! Customize a trivia game, pick out board games, and setup a party playlist!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/301-Sweet-Potatoes/game-night.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/301-Sweet-Potatoes/game-night/issues"
+  },
+  "homepage": "https://github.com/301-Sweet-Potatoes/game-night#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "pg": "^8.4.2",
+    "superagent": "^6.1.0"
+  }
+}
