@@ -148,5 +148,7 @@ function homeHandler(req, res) {
 
 
 
-// Start the server
-app.listen(PORT, () => console.log(`Server now listening on port ${PORT}.`));
+// Connect to DB & start the server
+client.connect()
+  .then(() => app.listen(PORT, () => console.log(`Server now listening on port ${PORT}.`)))
+  .catch(err => console.log('ERROR:', err));
