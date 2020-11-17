@@ -11,8 +11,18 @@
   <div id="home" class="flex-center flex-column">
     <h1>Trivia</h1>
     <button class="open-button" onclick="openForm()">Open Form</button>
+    <div class="form-popup" id="myForm">
+      <form action="/action_page.php" class="form-container">
+        <h1>Trivia</h1>
+        <label for="questions"><b>Questions</b></label>
+        <input type="number" placeholder="How many Questions?" name="Questions" required>
 
-</div>
-</body>
+        <label for="category"><b>Category</b></label>
+        <input type="text" placeholder="Category" name="category" required>
+        <button type="submit" class="btn">Save</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      </form>
+    </div>
+    </body>
 
 </html>
