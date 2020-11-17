@@ -14,13 +14,14 @@
     <div class="form-popup" id="triviaForm">
       <form action="/action_page.php" class="form-container">
         <h1>Trivia</h1>
+
         <label for="questions"><b>Questions</b></label>
         <input type="number" placeholder="How many Questions?" name="Questions" required>
 
         <label for="category"><b>Category</b></label>
 
         <label for="category">Choose a Category:</label>
-        <select id="category" name="category">
+        <select id="category" name="category" multiple>
           <option value="music">Music</option>
           <option value="movies">Movies</option>
           <option value="general knowledge">General Knowledge</option>
