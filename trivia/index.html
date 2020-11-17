@@ -1,28 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Night</title>
-  <link rel="stylesheet" href="trivia.css" />
-</head>
-<div class="container">
-  <div id="home" class="flex-center flex-column">
-    <h1>Trivia</h1>
-    <button class="open-button" onclick="openForm()">Open Form</button>
-    <div class="form-popup" id="myForm">
-      <form action="/action_page.php" class="form-container">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Quick Quiz</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="home" class="flex-center flex-column">
         <h1>Trivia</h1>
-        <label for="questions"><b>Questions</b></label>
-        <input type="number" placeholder="How many Questions?" name="Questions" required>
-
-        <label for="category"><b>Category</b></label>
-        <input type="text" placeholder="Category" name="category" required>
-        <button type="submit" class="btn">Save</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-      </form>
+       
+      </div>
     </div>
-    </body>
-
+  </body>
 </html>
