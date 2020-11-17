@@ -114,22 +114,50 @@ function homeHandler(req, res) {
 
 // -------- Playlist Stuff --------------//
 
+// Setup
+const SpotifyWebApi = require('spotify-web-api-node');
+const SPOTIFY_ID = process.env.SPOTIFY_CLIENT_ID;
+const SPOTIFY_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
+const spotifyApi = new SpotifyWebApi({ clientId: SPOTIFY_ID, clientSecret: SPOTIFY_SECRET });
+
+
 // Routes
 app.get('/playlist', playlistHandler);
 app.post('/playlist', searchPlaylistHandler);
 
+
 // Handlers
+function errorHandler(req, res, err) {
+  res.status(500).send(`Error: ${err}`);
+}
+
 function playlistHandler(req, res) {
   res.status(200).render('pages/playlist');
 }
 
-
 function searchPlaylistHandler(req, res) {
-  console.log(req.body);
+  let search = req.body.search;
+  spotifyApi.clientCredentialsGrant()
+    .then(data => {
+      spotifyApi.setAccessToken(data.body['access_token']);
+      spotifyApi.searchPlaylists(search, { limit: 3 })
+        .then(data => {
+          let playlists = data.body.playlists.items.map(playlist => new Playlist(playlist));
+          res.status(200).render('pages/playlist', { playlists });
+        })
+        .catch(err => errorHandler(req, res, err));
+    })
+    .catch(err => errorHandler(req, res, err));
 }
 
 
-
+function Playlist(obj){ 
+  this.description = obj.description;
+  this.url = obj.external_urls.spotify;
+  this.image = obj.images[0].url;
+  this.name = obj.name;
+  this.spotifyId = obj.id;
+}
 
 
 
