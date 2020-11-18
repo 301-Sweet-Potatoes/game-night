@@ -2,6 +2,12 @@
 
 Game Night is an app that allows the users to setup your perfect game night in minutes! Customize a trivia game, pick out board games, and setup a party playlist!
 
+## Setup
+
+1. `git clone`
+2. Create `.env` with `PORT` and `DATABASE_URL`
+3. Run `npm install` to install dependencies
+
 ## Wireframes
 
 [Home, Favorites](https://wireframe.cc/gir52U)
