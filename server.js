@@ -70,33 +70,31 @@ app.get('/boardgames', (req, res) => {
 app.post('/gameresults', bgamesSearch);
 
 function bgamesSearch(req, res) {
-  console.log('Function Commit');
-  // console.log('Response = ', res);  // this works
+  console.log('Function Boardgame Seach');
   const clientID = process.env.CLIENT_ID;
   const title = ('title = ', req.body.gamename);
   console.log('This Search=', title);
   const bgamesURL = `https://api.boardgameatlas.com/api/search?name=${title}&client_id=${clientID}`;
-  // const bgamesURL = `https://api.boardgameatlas.com/api/search?name=Pirates&client_id=${clientID}`;
   console.log('Search Games URL: ', bgamesURL);
 
-  // superagent.get(bgamesURL)
-  //   .then(game => {
-  //     let gameInfo = game.games.map(gameData => {
-  //       return new Boardgames(gameData.games);
-  //     });
-  // res.status(200).render('pages/gameresults', {searchGames: gameInfo});
-  res.status(200).render('pages/gameresults');
-  // })
-  // .catch(error => (req, res, error));
+  superagent.get(bgamesURL)
+    .then(game => {
+      let gameInfo = game.body.games.map(gameData => {
+        return new Boardgames(gameData);
+      });
+      res.status(200).render('pages/gameresults', { gameInfo });
+    })
+    .catch(err => errorHandler(req, res, err));
 }
 
 /* ------------- boardgames constructor ----------*/
 
 function Boardgames(obj) {
-  this.name = obj.games.name;
-  this.min_players = obj.games.min_players;
-  this.max_players = obj.games.max_players;
-  this.image = obj.games.images.small; // use small image
+  this.name = obj.name;
+  this.min_players = obj.min_players || 'Not Reported';
+  this.max_players = obj.max_players || 'Not Reported';
+  this.image = obj.images.small; // use small image
+  this.description = obj.description_preview || 'No description found';
 }
 
 
