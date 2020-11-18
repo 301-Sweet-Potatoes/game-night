@@ -170,15 +170,16 @@ const SPOTIFY_ID = process.env.SPOTIFY_CLIENT_ID;
 const SPOTIFY_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const spotifyApi = new SpotifyWebApi({ clientId: SPOTIFY_ID, clientSecret: SPOTIFY_SECRET });
 
-
 // Routes
 app.get('/playlist', playlistHandler);
 app.post('/playlist', searchPlaylistHandler);
 app.post('/favorites/playlist', savePlaylistHandler);
+app.delete('/favorites/playlist', deletePlaylistHandler);
 
 // Handlers
 function errorHandler(req, res, err) {res.status(500).send(`Error: ${err}`);}
-function playlistHandler(req, res) {res.status(200).render('pages/playlist');}
+
+function playlistHandler(req, res) { res.status(200).render('pages/playlist'); }
 
 function searchPlaylistHandler(req, res) {
   let search = req.body.search;
@@ -209,6 +210,14 @@ function savePlaylistHandler(req, res) {
     .catch(err => errorHandler(req, res, err));
 }
 
+function deletePlaylistHandler(req, res) {
+  const SQL = 'DELETE FROM playlist';
+
+  client.query(SQL)
+    .then(() => res.status(200).redirect('/favorites'))
+    .catch(err => errorHandler(req, res, err));
+}
+
 // Constructor
 function Playlist(obj){
   this.description = obj.description;
@@ -218,22 +227,7 @@ function Playlist(obj){
   this.spotifyId = obj.id;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 // -------- End Playlist Stuff --------------//
-
-
-
-
 
 // Connect to DB & start the server
 client.connect()
