@@ -127,12 +127,18 @@ function Boardgames(obj) {
 
 // -------- Trivia Stuff --------------//
 
-
+// Setup
+const clientID = process.env.CLIENT_ID;
+const title = ('title = ', req.body.triviaquestions);
+console.log('This Search=', title);
+const triviaURL = `https://opentdb.com/api.php?amount=2&category=9&difficulty=easy&type=boolean`;
+console.log('Search Trivia URL: ', triviaURL);
 
 
 // Routes
 app.get('/trivia', TriviaHandler);
 app.post('/trivia', searchTrivia);
+
 
 // Handlers
 function errorHandler(req, res, err) {
@@ -141,15 +147,7 @@ function errorHandler(req, res, err) {
 
 function searchTrivia(req, res) {
   console.log('Function Commit');
-  // console.log('Response = ', res);  // this works
-
-  // Setup
-  const clientID = process.env.CLIENT_ID;
-  const title = ('title = ', req.body.triviaquestions);
-  console.log('This Search=', title);
-  const triviaURL = `https://opentdb.com/api.php?amount=2&category=9&difficulty=easy&type=boolean`;
-  console.log('Search Trivia URL: ', triviaURL);
-
+  // console.log('Response = ', res);
   superagent.get(triviaURL)
     .then(trivia => {
       console.log(trivia.body);
@@ -167,10 +165,10 @@ function searchTrivia(req, res) {
 // Constructor for trivia
 
 //function TriviaHandler(obj) {
-  //this.
-  //this.
-  //this.
-  //this.
+//this.
+//this.
+//this.
+//this.
 //}
 
 
