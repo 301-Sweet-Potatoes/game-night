@@ -19,6 +19,11 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.get('/', homeHandler);
 
+app.get('/favorites', (req, res) => {
+  res.render('pages/favorites');
+
+});
+
 // Route Handlers
 function homeHandler(req, res) {
   res.status(200).render('index.ejs');
