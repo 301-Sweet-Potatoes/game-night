@@ -129,12 +129,37 @@ function Boardgames(obj) {
 
 
 
+// Setup
+// Routes
+// Handlers
+
+app.post('/triviaquestions', triviaSearch);
+
+function triviaSearch(req, res) {
+  console.log('Function Commit');
+  // console.log('Response = ', res);  // this works
+  const clientID = process.env.CLIENT_ID;
+  const title = ('title = ', req.body.triviaquestions);
+  console.log('This Search=', title);
+  const triviaURL = `https://opentdb.com/api.php?amount=2&category=9&difficulty=easy&type=boolean`;
+  console.log('Search Trivia URL: ', triviaURL);
+
+  superagent.get(triviaURL)
+    .then(trivia => {
+      console.log(trivia.body);
+      let triviaQuestions = trivia.body.trivia.map(triviaData => {
+        return new Trivia(triviaData);
+      });
+      console.log('TrivaQuestions ', triviaQuestions);
+      res.status(200).render('pages/triviaquestions', { triviaQuestions });
+      // res.status(200).render('pages/triviaresults');
+    })
+    .catch(err => errorHandler(req, res, err));
+}
 
 
 
-
-
-
+//.catch (err => errorHandler(req, res, err));
 
 
 
@@ -195,7 +220,7 @@ function searchPlaylistHandler(req, res) {
 }
 
 
-function Playlist(obj){ 
+function Playlist(obj) {
   this.description = obj.description;
   this.url = obj.external_urls.spotify;
   this.image = obj.images[0].url;
