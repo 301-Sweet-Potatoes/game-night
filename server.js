@@ -131,7 +131,7 @@ function Boardgames(obj) {
 
 
 // Routes
-app.get('/trivia', triviaHandler);
+app.get('/trivia', TriviaHandler);
 app.post('/trivia', searchTrivia);
 
 // Handlers
@@ -164,7 +164,14 @@ function searchTrivia(req, res) {
 }
 
 
+// Constructor for trivia
 
+//function TriviaHandler(obj) {
+  //this.
+  //this.
+  //this.
+  //this.
+//}
 
 
 
