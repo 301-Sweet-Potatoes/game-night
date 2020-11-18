@@ -168,16 +168,11 @@ const spotifyApi = new SpotifyWebApi({ clientId: SPOTIFY_ID, clientSecret: SPOTI
 // Routes
 app.get('/playlist', playlistHandler);
 app.post('/playlist', searchPlaylistHandler);
-
+app.post('/favorites/playlist', savePlaylistHandler);
 
 // Handlers
-function errorHandler(req, res, err) {
-  res.status(500).send(`Error: ${err}`);
-}
-
-function playlistHandler(req, res) {
-  res.status(200).render('pages/playlist');
-}
+function errorHandler(req, res, err) {res.status(500).send(`Error: ${err}`);}
+function playlistHandler(req, res) {res.status(200).render('pages/playlist');}
 
 function searchPlaylistHandler(req, res) {
   let search = req.body.search;
@@ -194,8 +189,22 @@ function searchPlaylistHandler(req, res) {
     .catch(err => errorHandler(req, res, err));
 }
 
+function savePlaylistHandler(req, res) {
+  const SQLDELETE = `DELETE FROM playlist RETURNING *`;
+  const SQLINSERT = `INSERT INTO playlist (name, description, url, image, spotifyid) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+  const params = [req.body.name, req.body.description, req.body.url, req.body.image, req.body.spotifyId];
 
-function Playlist(obj){ 
+  client.query(SQLDELETE)
+    .then(() => {
+      client.query(SQLINSERT, params)
+        .then(() => res.status(200).redirect('/favorites'))
+        .catch(err => errorHandler(req, res, err));
+    })
+    .catch(err => errorHandler(req, res, err));
+}
+
+// Constructor
+function Playlist(obj){
   this.description = obj.description;
   this.url = obj.external_urls.spotify;
   this.image = obj.images[0].url;
@@ -214,17 +223,7 @@ function Playlist(obj){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+// -------- End Playlist Stuff --------------//
 
 
 
