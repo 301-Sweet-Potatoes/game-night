@@ -129,17 +129,15 @@ function Boardgames(obj) {
 
 
 
-// Setup
+
 // Routes
 app.get('/trivia', triviaHandler);
-app.post('/trivia', searchTriviaHandler);
-
+app.post('/trivia', searchTrivia);
 
 // Handlers
 function errorHandler(req, res, err) {
   res.status(500).send(`Error: ${err}`);
 }
-app.post('/triviaquestions', searchTrivia);
 
 function searchTrivia(req, res) {
   console.log('Function Commit');
@@ -156,7 +154,7 @@ function searchTrivia(req, res) {
     .then(trivia => {
       console.log(trivia.body);
       let triviaQuestions = trivia.body.trivia.map(triviaData => {
-        return new TriviaQuestions(triviaData);
+        return new searchTriva(triviaData);
       });
       console.log('TrivaQuestions ', triviaQuestions);
       res.status(200).render('pages/triviaquestions', { triviaQuestions });
