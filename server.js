@@ -4,6 +4,7 @@
 const express = require('express');
 const superagent = require('superagent');
 const pg = require('pg');
+const methodOverride = require('method-override');
 
 // Environment variables
 require('dotenv').config();
@@ -16,6 +17,7 @@ const client = new pg.Client(process.env.DATABASE_URL);
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 // Routes
 app.get('/', homeHandler);
@@ -30,6 +32,8 @@ function favoritesHandler(req, res) {
   const SQLPLAYLIST = 'SELECT * FROM playlist';
 
   client.query(SQLPLAYLIST)
+    // LJ: this will need to be restructured when the next person adds their query.
+    // See savePlaylistHandler for nested client queries
     .then((playlist) => res.status(200).render('pages/favorites', { playlist: playlist.rows[0] }))
     .catch(err => errorHandler(req, res, err));
 }
