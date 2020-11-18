@@ -57,21 +57,42 @@ https://www.boardgameatlas.com/search/
 
 
 */
-app.get('/boardgames', bgamesSearch);
+app.get('/boardgames', (req, res) => {
+  console.log('You made it to Games');
+  res.render('pages/boardgames');
+});
 
-function bgamesSearch (req, res) {
+app.post('/gameresults', bgamesSearch);
+
+function bgamesSearch(req, res) {
   console.log('Function Commit');
-  console.log('Response = ', res);
+  // console.log('Response = ', res);  // this works
   const clientID = process.env.CLIENT_ID;
-  const title = ('title = ', res.body.gamename);
+  const title = ('title = ', req.body.gamename);
   console.log('This Search=', title);
-  // const bgamesURL = `https://api.boardgameatlas.com/api/search?name=${ title }&client_id=${ clientID }`;
-  const bgamesURL = `https://api.boardgameatlas.com/api/search?name=Pirates&client_id=${ clientID }`;
+  const bgamesURL = `https://api.boardgameatlas.com/api/search?name=${title}&client_id=${clientID}`;
+  // const bgamesURL = `https://api.boardgameatlas.com/api/search?name=Pirates&client_id=${clientID}`;
   console.log('Search Games URL: ', bgamesURL);
-  res.status(200).render('pages/boardgames');
+
+  // superagent.get(bgamesURL)
+  //   .then(game => {
+  //     let gameInfo = game.games.map(gameData => {
+  //       return new Boardgames(gameData.games);
+  //     });
+  // res.status(200).render('pages/gameresults', {searchGames: gameInfo});
+  res.status(200).render('pages/gameresults');
+  // })
+  // .catch(error => (req, res, error));
 }
 
+/* ------------- boardgames constructor ----------*/
 
+function Boardgames(obj) {
+  this.name = obj.games.name;
+  this.min_players = obj.games.min_players;
+  this.max_players = obj.games.max_players;
+  this.image = obj.games.images.small; // use small image
+}
 
 
 
