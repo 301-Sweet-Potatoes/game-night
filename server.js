@@ -19,18 +19,20 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', homeHandler);
-
-app.get('/favorites', (req, res) => {
-  res.render('pages/favorites');
-
-});
+app.get('/favorites', favoritesHandler);
 
 // Route Handlers
 function homeHandler(req, res) {
   res.status(200).render('index.ejs');
 }
 
+function favoritesHandler(req, res) {
+  const SQLPLAYLIST = 'SELECT * FROM playlist';
 
+  client.query(SQLPLAYLIST)
+    .then((playlist) => res.status(200).render('pages/favorites', { playlist: playlist.rows[0] }))
+    .catch(err => errorHandler(req, res, err));
+}
 
 
 
