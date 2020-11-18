@@ -131,13 +131,21 @@ function Boardgames(obj) {
 
 // Setup
 // Routes
+app.get('/trivia', triviaHandler);
+app.post('/trivia', searchTriviaHandler);
+
+
 // Handlers
+function errorHandler(req, res, err) {
+  res.status(500).send(`Error: ${err}`);
+}
+app.post('/triviaquestions', searchTrivia);
 
-app.post('/triviaquestions', triviaSearch);
-
-function triviaSearch(req, res) {
+function searchTrivia(req, res) {
   console.log('Function Commit');
   // console.log('Response = ', res);  // this works
+
+  // Setup
   const clientID = process.env.CLIENT_ID;
   const title = ('title = ', req.body.triviaquestions);
   console.log('This Search=', title);
@@ -148,7 +156,7 @@ function triviaSearch(req, res) {
     .then(trivia => {
       console.log(trivia.body);
       let triviaQuestions = trivia.body.trivia.map(triviaData => {
-        return new Trivia(triviaData);
+        return new TriviaQuestions(triviaData);
       });
       console.log('TrivaQuestions ', triviaQuestions);
       res.status(200).render('pages/triviaquestions', { triviaQuestions });
@@ -159,7 +167,7 @@ function triviaSearch(req, res) {
 
 
 
-//.catch (err => errorHandler(req, res, err));
+
 
 
 
