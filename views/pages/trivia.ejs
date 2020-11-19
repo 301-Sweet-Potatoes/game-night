@@ -10,27 +10,26 @@
 <div class="container">
   <div id="home" class="flex-center flex-column">
     <h1>Trivia</h1>
-    <button class="open-button" onclick="openForm()">Open Form</button>
+   
     <div class="form-popup" id="triviaForm">
-      <form action="/action_page.php" class="form-container">
-        <h1>Trivia</h1>
+      <form action="/trivia" method="post" class="form-container">
+        
 
         <label for="questions"><b>Questions</b></label>
         <input type="number" placeholder="How many Questions?" name="Questions" required>
 
         <label for="category"><b>Category</b></label>
 
-        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        
         <div id="myDropdown" class="dropdown-content">
-          <select id="category" name="category" multiple>
+          <select id="category" name="category">
             <option value="music">Music</option>
             <option value="movies">Movies</option>
-            <option value="general knowledge">General Knowledge</option>
-            <option value="video games">Video Games</option>
+            
           </select>
 
           <button type="submit" class="btn">Save</button>
-          <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          
       </form>
     </div>
     </body>
