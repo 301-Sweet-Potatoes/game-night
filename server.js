@@ -2,7 +2,7 @@
 
 // Dependencies
 const express = require('express');
-// const superagent = require('superagent');
+const superagent = require('superagent');
 const pg = require('pg');
 const methodOverride = require('method-override');
 
