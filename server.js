@@ -2,8 +2,9 @@
 
 // Dependencies
 const express = require('express');
-const superagent = require('superagent');
+// const superagent = require('superagent');
 const pg = require('pg');
+const methodOverride = require('method-override');
 
 // Environment variables
 require('dotenv').config();
@@ -16,21 +17,26 @@ const client = new pg.Client(process.env.DATABASE_URL);
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 // Routes
 app.get('/', homeHandler);
-
-app.get('/favorites', (req, res) => {
-  res.render('pages/favorites');
-
-});
+app.get('/favorites', favoritesHandler);
 
 // Route Handlers
 function homeHandler(req, res) {
   res.status(200).render('index.ejs');
 }
 
+function favoritesHandler(req, res) {
+  const SQLPLAYLIST = 'SELECT * FROM playlist';
 
+  client.query(SQLPLAYLIST)
+    // LJ: this will need to be restructured when the next person adds their query.
+    // See savePlaylistHandler for nested client queries
+    .then((playlist) => res.status(200).render('pages/favorites', { playlist: playlist.rows[0] }))
+    .catch(err => errorHandler(req, res, err));
+}
 
 
 
@@ -102,6 +108,7 @@ function bgamesSearch(req, res) {
 }
 
 /* ------------- boardgames constructor ----------*/
+
 
 function addBG(req, res) {
   // console.log('add boardgame', game.gameid);
@@ -194,20 +201,16 @@ const SPOTIFY_ID = process.env.SPOTIFY_CLIENT_ID;
 const SPOTIFY_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const spotifyApi = new SpotifyWebApi({ clientId: SPOTIFY_ID, clientSecret: SPOTIFY_SECRET });
 
-
 // Routes
 app.get('/playlist', playlistHandler);
 app.post('/playlist', searchPlaylistHandler);
-
+app.post('/favorites/playlist', savePlaylistHandler);
+app.delete('/favorites/playlist', deletePlaylistHandler);
 
 // Handlers
-function errorHandler(req, res, err) {
-  res.status(500).send(`Error: ${err}`);
-}
+function errorHandler(req, res, err) {res.status(500).send(`Error: ${err}`);}
 
-function playlistHandler(req, res) {
-  res.status(200).render('pages/playlist');
-}
+function playlistHandler(req, res) { res.status(200).render('pages/playlist'); }
 
 function searchPlaylistHandler(req, res) {
   let search = req.body.search;
@@ -224,8 +227,30 @@ function searchPlaylistHandler(req, res) {
     .catch(err => errorHandler(req, res, err));
 }
 
+function savePlaylistHandler(req, res) {
+  const SQLDELETE = `DELETE FROM playlist RETURNING *`;
+  const SQLINSERT = `INSERT INTO playlist (name, description, url, image, spotifyid) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+  const params = [req.body.name, req.body.description, req.body.url, req.body.image, req.body.spotifyId];
 
-function Playlist(obj){ 
+  client.query(SQLDELETE)
+    .then(() => {
+      client.query(SQLINSERT, params)
+        .then(() => res.status(200).redirect('/favorites'))
+        .catch(err => errorHandler(req, res, err));
+    })
+    .catch(err => errorHandler(req, res, err));
+}
+
+function deletePlaylistHandler(req, res) {
+  const SQL = 'DELETE FROM playlist';
+
+  client.query(SQL)
+    .then(() => res.status(200).redirect('/favorites'))
+    .catch(err => errorHandler(req, res, err));
+}
+
+// Constructor
+function Playlist(obj){
   this.description = obj.description;
   this.url = obj.external_urls.spotify;
   this.image = obj.images[0].url;
@@ -233,32 +258,7 @@ function Playlist(obj){
   this.spotifyId = obj.id;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// -------- End Playlist Stuff --------------//
 
 // Connect to DB & start the server
 client.connect()

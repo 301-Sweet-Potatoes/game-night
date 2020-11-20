@@ -1,7 +1,7 @@
-/* body {
+body {
   background: url('../img/goldbackground.png');
   /* background-color:brown; */
-/* }
+}
 
 #header {
   display: inline-block;
@@ -29,8 +29,8 @@
   padding: 0px;
   justify-content: center;
   align-content: center;
-   */
-/* }
+  
+}
 
 .boxes>#gearbox {
   grid-column: 1;
@@ -185,31 +185,31 @@ left: 35px;
   top:30px;
   left: 35px;
    
-  } */
+  }
 
 
-/* .fav-boxes {
+.fav-boxes {
   display: grid;
   grid-template-columns: 250px 250px 100px 250px 250px 100px 250px 250px ;
   grid-template-rows: 100px 200px 50px 250px 50px 250px 50px;
   /* margin: auto; */
-  /* padding: 50px;
+  padding: 50px;
   justify-content: center;
   align-content: center;
   
-} */
-/* .fav-boxes>#fav-a {
+}
+.fav-boxes>#fav-a {
   grid-column: 4 / 5;
   grid-row: 2 ;
   background: url('../img/silverplate4.png');
   height: 100px;
   width: 500px;
   color: white
-} */
+}
 
 
 
-/* .fav-boxes>#fav-a  h1 {
+.fav-boxes>#fav-a  h1 {
   font-family: 'Rye', cursive;
   font-size: 40px;
   color: black;
@@ -235,9 +235,9 @@ left: 35px;
   height: 750px;
   width: 500px;
   color: white;
-} */
+}
 
-/* .fav-boxes>#fav-b>#trivaddbutton {
+.fav-boxes>#fav-b>#trivaddbutton {
   position: absolute;
   top:1000px;
   left: 120px;
@@ -262,9 +262,9 @@ left: 35px;
   position: absolute;
   top:1000px;
   left: 720px;
-} */
+}
 
-/* .fav-boxes>#fav-c>#gamedelbutton {
+.fav-boxes>#fav-c>#gamedelbutton {
   position: absolute;
   top:1000px;
   left: 1080px;
@@ -283,9 +283,9 @@ left: 35px;
   position: absolute;
   top:1000px;
   left:1320px;
-} */
+}
 
-/* .fav-boxes>#fav-d>#playdelbutton {
+.fav-boxes>#fav-d>#playdelbutton {
   position: absolute;
   top:1000px;
   left: 1680px;
@@ -297,4 +297,173 @@ left: 35px;
  background-repeat: repeat-x;
   height: 75px;
   width: 100%;
-}   */
+}
+
+.boxes>#gearbox {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  height: 150px;
+  padding: 0px;
+  margin:0px;
+  
+
+}
+
+
+.boxes>#gearbox>#gear-01 {
+  position: absolute;
+  top:0px;
+  left:110px;
+  width:74px;
+  height:74px;
+animation-name:gear-01-ani;
+  animation-duration:10s;
+animation-delay:0s;
+animation-timing-function:linear;
+animation-iteration-count:infinite;
+animation-direction:normal;
+transform:rotate(0deg);
+}
+
+@keyframes gear-01-ani {
+  from {transform:rotate(0deg);}
+to {transform:rotate(359deg);}
+}
+.boxes>#gearbox>#gear-02 {
+  position: relative;
+  top:-75px;
+  left:110px;
+  width:57px;
+  height:58px;
+  animation-name: gear-02-ani;
+  animation-duration:8s;
+  animation-delay:0s;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+  animation-direction:reverse;
+  transform:rotate(0deg);
+}
+
+@keyframes gear-02-ani {
+  from {transform:rotate(0deg);}
+to {transform:rotate(359deg);}
+}
+.boxes>#gearbox>#gear-03 {
+  position: relative;
+  top:-180px;
+  left: 83px;
+  width: 31px;
+  height: 31px;
+  animation-name: gear-03-ani;
+  animation-duration: 4s;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: reverse;
+  transform: rotate(0deg);
+}
+
+@keyframes gear-03-ani {
+  from {transform:rotate(0deg);}
+to {transform:rotate(359deg);}
+}
+.boxes>#gearbox>#gear-04 {
+  position: absolute;
+  top: 55px;
+  left: 160px;
+  width: 160px;
+  height: 160px;
+  
+  animation-name: gear-04-ani;
+  animation-duration: 29.75s;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  transform: rotate(0deg);
+}
+
+@keyframes gear-04-ani {
+  from {transform:rotate(0deg);}
+to {transform:rotate(359deg);}
+}
+.boxes>#gearbox>#gear-05 {
+  position: absolute;
+  top: -70px;
+  left: -70px;
+  width: 160px;
+  height: 160px;
+  animation-name: gear-05-ani;
+  animation-duration: 28.5s;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  transform: rotate(0deg);
+}
+
+@keyframes gear-05-ani {
+  from {transform:rotate(0deg);}
+to {transform:rotate(359deg);}
+}
+
+
+
+
+
+.boxes>#box-c>#fade {
+  position: relative;
+  top: 80px;
+  left: 98px;
+  -webkit-animation: fade 10s alternate infinite;
+  animation: fade 3s alternate infinite;
+ 
+}
+@-webkit-keyframes fade {
+  0% {
+    opacity: 1;
+  }
+   100% {
+     opacity: 0;
+   }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+.boxes>#box-e>#heart {
+  position: relative;
+  left: 30px;
+          
+  animation-name: bounce;
+    perspective: 1200px;
+    animation-timing-function: ease-in-out;
+    /* animation-fill-mode: both; */
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+    -webkit-animation-name: bounce;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 5s;
+   }
+
+
+
+   @keyframes bounce { 
+    0% {transform: scale(1);} 
+    10%, 20% {transform: scale(0.9) rotate(-3deg);} 
+    30%, 50%, 70%, 90% {transform: scale(1.3) rotate(3deg);} 
+    40%, 60%, 80% {transform: scale(1.3) rotate(-3deg);} 
+    100% {transform: scale(1) rotate(0);} 
+   }
+   
+ 
+    

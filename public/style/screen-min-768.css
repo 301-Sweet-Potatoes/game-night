@@ -1,0 +1,428 @@
+body {
+  background: url('../img/goldbackground.png');
+  background-color:brown; 
+
+}
+
+#header {
+  display: inline-block;
+  background: url('../img/goldbar.jpg');
+  background-repeat: repeat-x;
+  height: 100px;
+  width: 100%;
+  padding: 0px;
+}
+
+#header>h1 {
+  font-family: 'Abril Fatface', cursive;
+  color: black;
+  text-align: center;
+  font-size: 50px;
+  padding: 30px;
+}
+
+.boxes {
+  display: grid;
+  grid-template-columns: 100px 250px 250px 100px ;
+  grid-template-rows: 227px 250px 250px 150px 100px 50px 250px 250px;
+  margin-top: 50px;
+  padding: 0px;
+  justify-content: center;
+  align-content: center;
+}
+
+.boxes>#gearbox {
+  grid-column: 2;
+  grid-row: 7;
+  background-color: black;
+  height: 300px;
+  width: 225px;
+  border: 5px solid black;
+  padding: 0px;
+  margin-top: 50px;
+}
+
+.boxes>#triviabutton {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  top: 30px;
+  left: 35px;
+}
+
+.boxes>#box-b {
+  grid-column: 3;
+  grid-row: 7;
+  background-color: black;
+  height: 250px;
+  width: 225px;
+}
+
+.boxes>#box-c {
+  grid-column: 2;
+  grid-row: 8;
+  background: url('../img/porthole2.png');
+  height: 250px;
+  width: 225px;
+}
+
+}
+
+}
+
+.boxes>#box-d {
+  grid-column: 1 / 2;
+  grid-row: 1 / 6;
+  background-color: black;
+  height: 850px;
+  width: 500px;
+  float: right;
+}
+
+.boxes>#box-d>.contraption {
+  display: grid;
+  grid-template-columns: 250px 250px;
+  grid-template-rows: 100px 250px 250px 150px 100px;
+  background-color: darkgray;
+  padding: 0px;
+}
+
+.boxes>#box-d>.contraption>#box-1 {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+  background: url('../img/silverplate4.png');
+  padding: 0px;
+}
+
+.boxes>#box-d>.contraption>#box-1 h1 {
+  font-family: 'Rye', cursive;
+  font-size: 40px;
+  color: black;
+  padding: 20px;
+  text-align: center;
+}
+
+.boxes>#box-d>.contraption>#box-2 {
+  grid-column: 1;
+  grid-row: 2;
+  background-color: black;
+  margin: 0px;
+}
+
+.boxes>#box-d>.contraption>#box-3 {
+  grid-column: 2;
+  grid-row: 2;
+  background-color: black;
+}
+
+.boxes>#box-d>.contraption>#box-4 {
+  grid-column: 1;
+  grid-row: 3;
+  background-color: green;
+}
+
+.boxes>#box-d>.contraption>#box-5 {
+  grid-column: 2;
+  grid-row: 3;
+  background: url("../img/frame.png");
+}
+
+.boxes>#box-d>.contraption>#box-6 {
+  grid-column: 1 / span 2;
+  grid-row: 4;
+  background: url("../img/gauges1.png");
+  background-repeat: repeat-x;
+  padding: 0px;
+  margin: 0px;
+}
+
+.boxes>#box-d>.contraption>#box-7 {
+  grid-column: 1 / span 2;
+  grid-row: 5;
+  background: url('../img/metalrustybg.png');
+  background-repeat: repeat-x;
+  padding: 0px;
+  margin: 0px;
+}
+
+.boxes>#box-e {
+  grid-column: 3;
+  grid-row: 8;
+  background: url("../img/silverswirl.png");
+  height: 150px;
+  width: 225px;
+  ;
+}
+
+.boxes>#favbutton {
+  grid-column: 5;
+  grid-row: 1;
+  position: relative;
+  top: 30px;
+  left: 35px;
+}
+
+ .fav-boxes {
+  display: grid;
+  grid-template-columns: 250px 250px 100px 250px 250px 100px 250px 250px;
+  grid-template-rows: 100px 200px 50px 250px 50px 250px 50px;
+   margin: auto; 
+  padding: 50px;
+  justify-content: center;
+  align-content: center;
+  
+} 
+ .fav-boxes>#fav-a {
+  grid-column: 4 / 5;
+  grid-row: 2 ;
+  background: url('../img/silverplate4.png');
+  height: 100px;
+  width: 500px;
+  color: white
+} */
+  .fav-boxes>#fav-a h1 {
+    font-family: 'Rye', cursive;
+    font-size: 40px;
+    color: black;
+    padding: 20px;
+    text-align: center;
+  }
+  .fav-boxes>#decoration1 {
+    grid-column: 4 / 5;
+    grid-row: 1;
+    margin: auto;
+    justify-content: center;
+    align-content: center;
+  }
+  .fav-boxes>#fav-b {
+    grid-column: 1 / 2;
+    grid-row: 3 / 6;
+    background: url("../img/favframe.png");
+    height: 750px;
+    width: 500px;
+    color: white;
+  }
+  */ .fav-boxes>#fav-b>#trivaddbutton {
+    position: absolute;
+    top: 1000px;
+    left: 120px;
+  }
+  .fav-boxes>#fav-b>#trivdelbutton {
+    position: absolute;
+    top: 1000px;
+    left: 480px;
+  }
+  .fav-boxes>#fav-c {
+    grid-column: 4 / 5;
+    grid-row: 3 / 6;
+    background: url("../img/favframe.png");
+    height: 750px;
+    width: 500px;
+    color: white;
+  }
+  .fav-boxes>#fav-c>#gameaddbutton {
+    position: absolute;
+    top: 1000px;
+    left: 720px;
+  }
+  */ .fav-boxes>#fav-c>#gamedelbutton {
+    position: absolute;
+    top: 1000px;
+    left: 1080px;
+  }
+  .fav-boxes>#fav-d {
+    grid-column: 7 / 8;
+    grid-row: 3 / 6;
+    background: url("../img/favframe.png");
+    height: 750px;
+    width: 500px;
+    color: white;
+    float: left;
+  }
+  .fav-boxes>#fav-d>#playaddbutton {
+    position: absolute;
+    top: 1000px;
+    left: 1320px;
+  }
+  */ .fav-boxes>#fav-d>#playdelbutton {
+    position: absolute;
+    top: 1000px;
+    left: 1680px;
+  }
+  #footer {
+    position: absolute;
+    background: url('../img/goldbar.jpg');
+    background-repeat: repeat-x;
+    height: 75px;
+    width: 100%;
+  }
+
+  .boxes>#gearbox {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+    height: 150px;
+    padding: 0px;
+    margin:0px;
+    
+  
+  }
+  
+  
+  .boxes>#gearbox>#gear-01 {
+    position: absolute;
+    top:0px;
+    left:110px;
+    width:74px;
+    height:74px;
+  animation-name:gear-01-ani;
+    animation-duration:10s;
+  animation-delay:0s;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+  animation-direction:normal;
+  transform:rotate(0deg);
+  }
+  
+  @keyframes gear-01-ani {
+    from {transform:rotate(0deg);}
+  to {transform:rotate(359deg);}
+  }
+  .boxes>#gearbox>#gear-02 {
+    position: relative;
+    top:-75px;
+    left:110px;
+    width:57px;
+    height:58px;
+    animation-name: gear-02-ani;
+    animation-duration:8s;
+    animation-delay:0s;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+    animation-direction:reverse;
+    transform:rotate(0deg);
+  }
+  
+  @keyframes gear-02-ani {
+    from {transform:rotate(0deg);}
+  to {transform:rotate(359deg);}
+  }
+  .boxes>#gearbox>#gear-03 {
+    position: relative;
+    top:-180px;
+    left: 83px;
+    width: 31px;
+    height: 31px;
+    animation-name: gear-03-ani;
+    animation-duration: 4s;
+    animation-delay: 0s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    transform: rotate(0deg);
+  }
+  
+  @keyframes gear-03-ani {
+    from {transform:rotate(0deg);}
+  to {transform:rotate(359deg);}
+  }
+  .boxes>#gearbox>#gear-04 {
+    position: absolute;
+    top: 55px;
+    left: 160px;
+    width: 160px;
+    height: 160px;
+    
+    animation-name: gear-04-ani;
+    animation-duration: 29.75s;
+    animation-delay: 0s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    transform: rotate(0deg);
+  }
+  
+  @keyframes gear-04-ani {
+    from {transform:rotate(0deg);}
+  to {transform:rotate(359deg);}
+  }
+  .boxes>#gearbox>#gear-05 {
+    position: absolute;
+    top: -70px;
+    left: -70px;
+    width: 160px;
+    height: 160px;
+    animation-name: gear-05-ani;
+    animation-duration: 28.5s;
+    animation-delay: 0s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    transform: rotate(0deg);
+  }
+  
+  @keyframes gear-05-ani {
+    from {transform:rotate(0deg);}
+  to {transform:rotate(359deg);}
+  }
+  
+  
+  
+  
+  
+  .boxes>#box-c>#fade {
+    position: relative;
+    top: 80px;
+    left: 98px;
+    -webkit-animation: fade 10s alternate infinite;
+    animation: fade 3s alternate infinite;
+   
+  }
+  @-webkit-keyframes fade {
+    0% {
+      opacity: 1;
+    }
+     100% {
+       opacity: 0;
+     }
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  .boxes>#box-e>#heart {
+    position: relative;
+    left: 30px;
+            
+    animation-name: bounce;
+      perspective: 1200px;
+      animation-timing-function: ease-in-out;
+      /* animation-fill-mode: both; */
+      animation-iteration-count: infinite;
+      animation-duration: 5s;
+      -webkit-animation-name: bounce;
+      -webkit-animation-timing-function: ease-in-out;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-duration: 5s;
+     }
+  
+  
+  
+     @keyframes bounce { 
+      0% {transform: scale(1);} 
+      10%, 20% {transform: scale(0.9) rotate(-3deg);} 
+      30%, 50%, 70%, 90% {transform: scale(1.3) rotate(3deg);} 
+      40%, 60%, 80% {transform: scale(1.3) rotate(-3deg);} 
+      100% {transform: scale(1) rotate(0);} 
+     }
+     
+   
+      
+  
