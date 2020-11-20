@@ -151,8 +151,8 @@ function triviaQuestions(req, res) {
 
 
 function searchTrivia(req, res) {
-//pass variables into the url
-//amount=${value}
+  //pass variables into the url
+  //amount=${value}
 
 
   const triviaURL = `https://opentdb.com/api.php?amount=2&category=9&difficulty=easy&type=boolean`;
@@ -161,12 +161,12 @@ function searchTrivia(req, res) {
   // console.log('Response = ', res);
   superagent.get(triviaURL)
     .then(trivia => {
-      let result=trivia.body.results;
+      let result = trivia.body.results;
       let triviaQuestions = result.map(triviaData => {
         return new Trivia(triviaData);
       });
       console.log('TrivaQuestions ', triviaQuestions);
-      res.status(200).render('pages/triviaresults', { triviaQuestions });
+      res.status(200).render('pages/triviaresults', { triviaData: triviaQuestions });
       // res.status(200).render('pages/triviaresults');
     })
     .catch(err => errorHandler(req, res, err));
@@ -176,11 +176,11 @@ function searchTrivia(req, res) {
 // Constructor for trivia
 
 function Trivia(obj) {
-this.category=obj.category;
-this.type=obj.type;
-this.difficulty=obj.difficulty;
-this.question=obj.question;
-this.correctanswer=obj.correct_answer;
+  this.category = obj.category;
+  this.type = obj.type;
+  this.difficulty = obj.difficulty;
+  this.question = obj.question;
+  this.correctanswer = obj.correct_answer;
 }
 
 

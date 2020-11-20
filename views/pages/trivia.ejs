@@ -10,28 +10,32 @@
 <div class="container">
   <div id="home" class="flex-center flex-column">
     <h1>Trivia</h1>
-   
+
     <div class="form-popup" id="triviaForm">
       <form action="/trivia" method="post" class="form-container">
-        
+
 
         <label for="questions"><b>Questions</b></label>
         <input type="number" placeholder="How many Questions?" name="Questions" required>
 
         <label for="category"><b>Category</b></label>
 
-        
+
         <div id="myDropdown" class="dropdown-content">
           <select id="category" name="category">
-            <option value="music">Music</option>
+            <option value="General Knowledge">Music</option>
             <option value="movies">Movies</option>
-            
+
           </select>
 
-          <button type="submit" class="btn">Save</button>
-          
+          <button type="submit" class="btn">Search</button>
+
       </form>
+
+
     </div>
+    
+
     </body>
 
 </html>
