@@ -2,7 +2,7 @@
 
 // Dependencies
 const express = require('express');
-const superagent = require('superagent');
+// const superagent = require('superagent');
 const pg = require('pg');
 
 // Environment variables
@@ -92,12 +92,12 @@ function bgamesSearch(req, res) {
 
 /* ------------- boardgames constructor ----------*/
 
-function Boardgames(obj) {
-  this.name = obj.games.name;
-  this.min_players = obj.games.min_players;
-  this.max_players = obj.games.max_players;
-  this.image = obj.games.images.small; // use small image
-}
+// function Boardgames(obj) {
+//   this.name = obj.games.name;
+//   this.min_players = obj.games.min_players;
+//   this.max_players = obj.games.max_players;
+//   this.image = obj.games.images.small; // use small image
+// }
 
 
 
@@ -195,7 +195,7 @@ function searchPlaylistHandler(req, res) {
 }
 
 
-function Playlist(obj){ 
+function Playlist(obj) {
   this.description = obj.description;
   this.url = obj.external_urls.spotify;
   this.image = obj.images[0].url;
