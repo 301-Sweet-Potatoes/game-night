@@ -250,7 +250,9 @@ body {
     left: 1680px;
   }
   #footer {
-    position: absolute;
+    position: fixed;
+    left: 0;
+    bottom: 0;
     background: url('../img/goldbar.jpg');
     background-repeat: repeat-x;
     height: 75px;

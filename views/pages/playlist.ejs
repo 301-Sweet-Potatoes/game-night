@@ -4,12 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" type="text/css" media="only screen and (min-width: 768px)" href="style/screen-min-768.css" />
+    <link rel="stylesheet" type="text/css" media="only screen and (min-width: 1024px)" href="style/screen-min-1024.css" />
   <title>Playlist</title>
 </head>
 
 <body>
-  <h1>Find a Playlist</h1>
-
+  <header id="header">
+    <h1>Find a Playlist</h1>
+  </header>
   <form action="/playlist" method="POST">
     <input type="text" name="search" placeholder="Add a search phrase">
     <button type="submit">Search</button>
@@ -37,6 +41,7 @@
   <% }) %>
   <% } %>
 
+  <footer id="footer"></footer>
 </body>
 
 </html>
