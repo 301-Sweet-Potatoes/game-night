@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trivia</title>
+  <title>Game Night</title>
+  <link rel="stylesheet" href="trivia.css" />
 </head>
-<body>
-  <h1>Trivia</h1>
-</body>
+<div class="container">
+  <div id="home" class="flex-center flex-column">
+    <h1>Trivia</h1>
+
+    <div class="form-popup" id="triviaForm">
+      <form action="/trivia" method="post" class="form-container">
+
+
+        <label for="questions"><b>Questions</b></label>
+        <input type="number" placeholder="How many Questions?" name="Questions" required>
+
+        <label for="category"><b>Category</b></label>
+
+
+        <div id="myDropdown" class="dropdown-content">
+          <select id="category" name="category">
+            <option value="General Knowledge">Music</option>
+            <option value="movies">Movies</option>
+
+          </select>
+
+          <button type="submit" class="btn">Search</button>
+
+      </form>
+
+
+    </div>
+    
+
+    </body>
+
 </html>
