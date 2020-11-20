@@ -2,7 +2,7 @@
 
 // Dependencies
 const express = require('express');
-const superagent = require('superagent');
+// const superagent = require('superagent');
 const pg = require('pg');
 const methodOverride = require('method-override');
 
@@ -98,12 +98,12 @@ function bgamesSearch(req, res) {
 
 /* ------------- boardgames constructor ----------*/
 
-function Boardgames(obj) {
-  this.name = obj.games.name;
-  this.min_players = obj.games.min_players;
-  this.max_players = obj.games.max_players;
-  this.image = obj.games.images.small; // use small image
-}
+// function Boardgames(obj) {
+//   this.name = obj.games.name;
+//   this.min_players = obj.games.min_players;
+//   this.max_players = obj.games.max_players;
+//   this.image = obj.games.images.small; // use small image
+// }
 
 
 
