@@ -288,7 +288,6 @@ function playlistHandler(req, res) {
         .catch(err => errorHandler(req, res, err));
     })
     .catch(err => errorHandler(req, res, err));
-  res.status(200).render('pages/playlist');
 }
 
 function searchPlaylistHandler(req, res) {
