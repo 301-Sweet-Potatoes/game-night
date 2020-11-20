@@ -130,6 +130,7 @@ function Boardgames(obj) {
 // Routes
 app.get('/trivia', triviaQuestions);
 app.post('/trivia', searchTrivia);
+app.post('/addtrivia', addtodb);
 
 // Setup
 
@@ -141,7 +142,18 @@ function triviaQuestions(req, res) {
 
   res.render('pages/trivia');
 }
+function addtodb(req, res) {
+  console.log('hello! you just saved a question', req.body);
+  const category = req.body.category;
+  const correctanswer = req.body.answer;
+  const question = req.body.question;
+  let SQL = 'INSERT INTO trivia (category, question, correctanswer) VALUES ($1, $2, $3) RETURNING *;';
+  let values = [category, question, correctanswer];
 
+  client.query(SQL, values)
+    .then(data => console.log('data', data));
+
+}
 
 
 
@@ -177,8 +189,6 @@ function searchTrivia(req, res) {
 
 function Trivia(obj) {
   this.category = obj.category;
-  this.type = obj.type;
-  this.difficulty = obj.difficulty;
   this.question = obj.question;
   this.correctanswer = obj.correct_answer;
 }
