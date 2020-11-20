@@ -4,29 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" type="text/css" media="only screen and (min-width: 768px)" href="style/screen-min-768.css" />
+  <link rel="stylesheet" type="text/css" media="only screen and (min-width: 1024px)" href="style/screen-min-1024.css" />
   <title>Playlist</title>
 </head>
 
 <body>
-  <h1>Find a Playlist</h1>
+  <header id="header">
+    <h1><a href="/">Find a Playlist</a></h1>
+  </header>
+  <div id="playlist-container">
+    <form action="/playlist" method="POST" id="playlist-form">
+      <input type="text" name="search" placeholder="Add a search phrase">
+      <button type="submit">Search</button>
+    </form>
 
-  <form action="/playlist" method="POST">
-    <input type="text" name="search" placeholder="Add a search phrase">
-    <button type="submit">Search</button>
-  </form>
 
+    <% if (typeof(playlists) !== 'undefined') { %>
+    <% playlists.forEach(playlist => { %>
+    <section id="playlist">
+      <h2><%= playlist.name %></h2>
+      <img src="<%= playlist.image %>" height="380px"></img>
+      <iframe src="https://open.spotify.com/embed/playlist/<%= playlist.spotifyId %>" width="300" height="380"
+        frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 
-  <% if (typeof(playlists) !== 'undefined') { %>
-  <% playlists.forEach(playlist => { %>
-  <section>
-    <h1><%= playlist.name %></h1>
-    <img src="<%= playlist.image %>" height="380px"></img>
-    <iframe src="https://open.spotify.com/embed/playlist/<%= playlist.spotifyId %>" width="300" height="380"
-      frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    <button>Save</button>
-  </section>
-  <% }) %>
-  <% } %>
+      <form action="/favorites/playlist" method="POST">
+        <input type="hidden" name="name" value="<%= playlist.name %>">
+        <input type="hidden" name="description" value="<%= playlist.description %>">
+        <input type="hidden" name="url" value="<%= playlist.url %>">
+        <input type="hidden" name="image" value="<%= playlist.image %>">
+        <input type="hidden" name="spotifyId" value="<%= playlist.spotifyId %>">
+        <button type="submit">Save Playlist</button>
+      </form>
+
+    </section>
+    <% }) %>
+    <% } %>
+
+  </div>
 
 </body>
+
 </html>

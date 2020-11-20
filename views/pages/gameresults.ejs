@@ -7,7 +7,17 @@
 </head>
 <body>
   <h1>Game Search Results</h1>
-
+  <div id='gameresults'>
+    <% gameInfo.forEach(game => { %>
+      <form action="/favorites/<%= game.gameid %>" method="POST">
+      <img src = "<%= game.image %>">
+      <h1><%= game.name %></h1>
+      <h3>Min Players: <%= game.min_players %> / Max Players: <%= game.max_players %></h3>
+      <p>Game ID: <%= game.gameid %></p>
+      <p><%= game.description %></p>
+      <p><button id="addBG" type="submit">ADD</button></p>
+    </form>
+   <% }) %>
   </div>
 </body>
 </html>
