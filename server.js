@@ -68,7 +68,8 @@ app.get('/boardgames', (req, res) => {
 });
 
 app.post('/gameresults', bgamesSearch);
-app.post('/favorites:game.id', addBG);
+app.post('/favorites:game.gameid', addBG);
+// console.log('Game ID: ', );
 
 function bgamesSearch(req, res) {
   const clientID = process.env.MEMBER_ID;
@@ -102,16 +103,19 @@ function bgamesSearch(req, res) {
 
 /* ------------- boardgames constructor ----------*/
 
-function addBG(req, res, ) {
-  console.log('add boardgame');
-  let { gamename, min_players, max_players, image_url, descriptions} = GameData.games;
-  console.log('Game Name=', req.body);
+function addBG(req, res) {
+  // console.log('add boardgame', game.gameid);
+  console.log('Request =', req);
+  console.log('Response = ', res);
+
+  // let { gamename, min_players, max_players, image_url, descriptions} = GameData;
+  // console.log('Game Name=', req.body);
   // console.log('request = ', req);
   // console.log('response = ', res);
-  const addSQL = `INSERT INTO boardgames (gamename, min_players, max_players, image_url, game_description) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
-  const params = [ gamename, min_players, max_players, image_url, descriptions ];
-  console.log('Params = ', params);
-
+  // const addSQL = `INSERT INTO boardgames (gamename, min_players, max_players, image_url, game_description) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+  // const params = [ gamename, min_players, max_players, image_url, descriptions ];
+  // console.log('Params = ', params);
+  res.status(200).send('pages/favorites', 'Hello World' );
 }
 
 
@@ -122,6 +126,7 @@ function Boardgames(obj) {
   this.max_players = obj.max_players || 'Not Reported';
   this.image = obj.images.small; // use small image
   this.description = obj.description_preview || 'No description found';
+  console.log('Constructor Obj ID = ', this.gameid);
 }
 
 
