@@ -29,12 +29,19 @@ function homeHandler(req, res) {
 }
 
 function favoritesHandler(req, res) {
-  const SQLPLAYLIST = 'SELECT * FROM playlist';
-
+  const SQLPLAYLIST = 'SELECT * FROM playlist;';
+  const SQLBOARDGAMES = 'SELECT * FROM boardgames;';
+  
+  // LJ: this will need to be restructured when the next person adds their query.
+  // See savePlaylistHandler for nested client queries
   client.query(SQLPLAYLIST)
-    // LJ: this will need to be restructured when the next person adds their query.
-    // See savePlaylistHandler for nested client queries
-    .then((playlist) => res.status(200).render('pages/favorites', { playlist: playlist.rows[0] }))
+    .then((playlist) => { 
+      client.query(SQLBOARDGAMES)
+        .then((boardgame) => {
+          res.status(200).render('pages/favorites', { playlist: playlist.rows[0], boardgames: boardgame.rows })
+        })
+        .catch(err => errorHandler(req, res, err))
+    })
     .catch(err => errorHandler(req, res, err));
 }
 
@@ -228,8 +235,8 @@ function searchPlaylistHandler(req, res) {
 }
 
 function savePlaylistHandler(req, res) {
-  const SQLDELETE = `DELETE FROM playlist RETURNING *`;
-  const SQLINSERT = `INSERT INTO playlist (name, description, url, image, spotifyid) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+  const SQLDELETE = `DELETE FROM playlist RETURNING *;`;
+  const SQLINSERT = `INSERT INTO playlist (name, description, url, image, spotifyid) VALUES ($1, $2, $3, $4, $5) RETURNING *;`;
   const params = [req.body.name, req.body.description, req.body.url, req.body.image, req.body.spotifyId];
 
   client.query(SQLDELETE)
