@@ -58,8 +58,8 @@ function homeHandler(req, res) {
 
 /*
 https://api.boardgameatlas.com/api/search?order_by=popularity&ascending=false&client_id=JLBr5npPhV
-https://www.boardgameatlas.com/search/
 
+https://www.boardgameatlas.com/search/
 
 */
 app.get('/boardgames', (req, res) => {
@@ -68,18 +68,31 @@ app.get('/boardgames', (req, res) => {
 });
 
 app.post('/gameresults', bgamesSearch);
+app.post('/favorites:game.id', addBG);
 
 function bgamesSearch(req, res) {
-  console.log('Function Boardgame Seach');
-  const clientID = process.env.CLIENT_ID;
+  const clientID = process.env.MEMBER_ID;
   const title = ('title = ', req.body.gamename);
-  console.log('This Search=', title);
-  const bgamesURL = `https://api.boardgameatlas.com/api/search?name=${title}&client_id=${clientID}`;
-  console.log('Search Games URL: ', bgamesURL);
+  console.log('Game Title = ', title);
+  // let bgOrderBy = (req.body.orderby);
+  let bgamesURL = `https://api.boardgameatlas.com/api/search?name=${title}&client_id=${clientID}&limit=2`;
+
+
+  // TODO:   STRETCH GOAL: add back the orderby Trending and Ranking
+
+  // if (req.body.orderby === 'trending' || 'rank') {
+  //   let bgamesURL = `https://api.boardgameatlas.com/api/search?order_by=${bgOrderBy}&client_id=${clientID}&limit=10`;
+
+  // } else {
+  //   (req.body.orderby === 'title')
+  //   let bgamesURL = `https://api.boardgameatlas.com/api/search?order_by=${title}&client_id=${clientID}&limit=10`;
+  // }
+/* ---------------------------------------------------------------*/
 
   superagent.get(bgamesURL)
     .then(game => {
       let gameInfo = game.body.games.map(gameData => {
+        console.log('GameData = ', gameData);
         return new Boardgames(gameData);
       });
       res.status(200).render('pages/gameresults', { gameInfo });
@@ -89,7 +102,21 @@ function bgamesSearch(req, res) {
 
 /* ------------- boardgames constructor ----------*/
 
+function addBG(req, res, ) {
+  console.log('add boardgame');
+  let { gamename, min_players, max_players, image_url, descriptions} = GameData.games;
+  console.log('Game Name=', req.body);
+  // console.log('request = ', req);
+  // console.log('response = ', res);
+  const addSQL = `INSERT INTO boardgames (gamename, min_players, max_players, image_url, game_description) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+  const params = [ gamename, min_players, max_players, image_url, descriptions ];
+  console.log('Params = ', params);
+
+}
+
+
 function Boardgames(obj) {
+  this.gameid = obj.id;
   this.name = obj.name;
   this.min_players = obj.min_players || 'Not Reported';
   this.max_players = obj.max_players || 'Not Reported';

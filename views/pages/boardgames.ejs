@@ -8,13 +8,20 @@
 <body>
   <h1>Board Games</h1>
   <form action="/gameresults" method="POST">
-    <label><span>Order by:<input type = "radio" name="trending">Trending<input type="radio" name="rank">Rank</span></label>
-
-    <label><span><input type="text" name="gamename" placeholder="Title of Game"></span></label>
-    <label><span></span></label>
-    <button id="boardgames" type="submit">Search Games</button>
+    <!-- <label><span>
+        Find games by:
+        <input type="radio" name="orderby" value="trending">Trending
+        <input type="radio" name="orderby" value="rank" >Rank</span>
+    </label>
+    <p>Or</p> -->
+    <label><span>
+        <input type="text" name="gamename" placeholder="Title of Game"></span></label>
+    <label><span>
+  
+      </span></label>
+      <p><button id="boardgames" type="submit">Search Games</button></p>
+    
   </form>
-
-
+  
 </body>
 </html>

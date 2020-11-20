@@ -9,12 +9,13 @@
   <h1>Game Search Results</h1>
   <div id='gameresults'>
     <% gameInfo.forEach(game => { %>
-      
+      <form action="/favorites/<%= game.id %>" method="POST">
       <img src = "<%= game.image %>">
       <h1><%= game.name %></h1>
       <h3>Min Players: <%= game.min_players %> / Max Players: <%= game.max_players %></h3>
       <p><%= game.description %></p>
-      
+      <p><button id="addBG" type="submit">ADD</button></p>
+    </form>
    <% }) %>
   </div>
 </body>
