@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" type="text/css" media="only screen and (min-width: 768px)" href="style/screen-min-768.css"/>
+  <link rel="stylesheet" type ="text/css" media="only screen and (min-width: 1024px)" href="style/screen-min-1024.css"/>
+
+  <title>Favorites</title>
+</head>
+<body>
+  <header>
+    <div id ="header"><h1>GAME NIGHT</h1></div>
+  </header>
+  <a href='/index.ejs'>Home</a>
+  <main>
+    <section class = "fav-boxes">
+    <div id = "fav-a"><h1>FAVORITES</h1>> </div>
+
+    <div id="decoration1"><img src="../img/curlyclock.png"></div>
+   
+
+    <div id = "fav-b">Trivia 
+      <div id="trivaddbutton"><img src="../img/addbutton.png" height="50" width="100"></div> 
+      <div id="trivdelbutton"><img src="../img/deletebutton.png" height="50" width="100"></div> 
+ 
+ 
+      </div>
+
+
+   
+    
+    <div id = "fav-c">Games 
+     // TODO:  add favorites from DB Here!
+     <%- include(../partials/favgames.ejs', { favgames }) %>
+      <div id="gameaddbutton"><img src="../img/addbutton.png" height="50" width="100"></div> 
+      <div id="gamedelbutton"><img src="../img/deletebutton.png" height="50" width="100"></div> 
+    </div>
+
+    <div id = "fav-d">
+      <%- include('../partials/playlist', { playlist }) %>
+      <div id="playaddbutton"><img src="../img/addbutton.png" height="50" width="100"></div> 
+      <div id="playdelbutton"><img src="../img/deletebutton.png" height="50" width="100"></div> 
+
+      
+      </div>     
+    
+  </section> 
+   
+    </main>
+    <footer>
+      <div id ="footer"></div>
+    </footer>
+</body>
+</html>
