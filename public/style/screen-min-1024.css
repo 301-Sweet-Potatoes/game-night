@@ -292,9 +292,12 @@ left: 35px;
 }
 
 #footer {
-  position:absolute;
+  position:fixed;
+  position: fixed;
+  left: 0;
+  bottom: 0;
   background: url('../img/goldbar.jpg');
- background-repeat: repeat-x;
+  background-repeat: repeat-x;
   height: 75px;
   width: 100%;
 }
