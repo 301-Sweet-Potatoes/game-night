@@ -23,10 +23,20 @@
     <img src="<%= playlist.image %>" height="380px"></img>
     <iframe src="https://open.spotify.com/embed/playlist/<%= playlist.spotifyId %>" width="300" height="380"
       frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    <button>Save</button>
+
+    <form action="/favorites/playlist" method="POST">
+      <input type="hidden" name="name" value="<%= playlist.name %>">
+      <input type="hidden" name="description" value="<%= playlist.description %>">
+      <input type="hidden" name="url" value="<%= playlist.url %>">
+      <input type="hidden" name="image" value="<%= playlist.image %>">
+      <input type="hidden" name="spotifyId" value="<%= playlist.spotifyId %>">
+      <button type="submit">Save Playlist</button>
+    </form>
+
   </section>
   <% }) %>
   <% } %>
 
 </body>
+
 </html>
