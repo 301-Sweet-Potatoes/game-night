@@ -3,7 +3,7 @@ body {
   /* background-color:brown; */
 }
 
-#header {
+header {
   display: inline-block;
  background: url('../img/goldbar.jpg');
  background-repeat: repeat-x;
@@ -13,7 +13,7 @@ body {
   padding: 0px;
 }
 
-#header>h1 {
+header>h1 {
   font-family: 'Abril Fatface', cursive;
   color: black;
   text-align: center;
