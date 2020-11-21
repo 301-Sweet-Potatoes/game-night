@@ -2,7 +2,7 @@
 
 // Dependencies
 const express = require('express');
-// const superagent = require('superagent');
+const superagent = require('superagent');
 const pg = require('pg');
 const methodOverride = require('method-override');
 
@@ -81,15 +81,16 @@ app.get('/boardgames', (req, res) => {
 });
 
 app.post('/gameresults', bgamesSearch);
-app.post('/favorites:game.gameid', addBG);
-// console.log('Game ID: ', );
+app.post('/favorites', addBG);
+app.delete('/favorites/favgames', removeBGames);
+
 
 function bgamesSearch(req, res) {
   const clientID = process.env.MEMBER_ID;
   const title = ('title = ', req.body.gamename);
   console.log('Game Title = ', title);
   // let bgOrderBy = (req.body.orderby);
-  let bgamesURL = `https://api.boardgameatlas.com/api/search?name=${title}&client_id=${clientID}&limit=2`;
+  let bgamesURL = `https://api.boardgameatlas.com/api/search?name=${title}&client_id=${clientID}&limit=10`;
 
 
   // TODO:   STRETCH GOAL: add back the orderby Trending and Ranking
@@ -101,12 +102,11 @@ function bgamesSearch(req, res) {
   //   (req.body.orderby === 'title')
   //   let bgamesURL = `https://api.boardgameatlas.com/api/search?order_by=${title}&client_id=${clientID}&limit=10`;
   // }
-/* ---------------------------------------------------------------*/
+  /* ---------------------------------------------------------------*/
 
   superagent.get(bgamesURL)
     .then(game => {
       let gameInfo = game.body.games.map(gameData => {
-        console.log('GameData = ', gameData);
         return new Boardgames(gameData);
       });
       res.status(200).render('pages/gameresults', { gameInfo });
@@ -118,29 +118,41 @@ function bgamesSearch(req, res) {
 
 
 function addBG(req, res) {
-  // console.log('add boardgame', game.gameid);
-  console.log('Request =', req);
-  console.log('Response = ', res);
+  const gameid = req.body.gameid;
+  console.log('Add gameid = ', gameid);
+  const gamename = req.body.name;
+  const minplay = req.body.min_players;
+  const maxplay = req.body.max_players;
+  const image = req.body.image_url;
+  const descript = req.body.description;
 
-  // let { gamename, min_players, max_players, image_url, descriptions} = GameData;
-  // console.log('Game Name=', req.body);
-  // console.log('request = ', req);
-  // console.log('response = ', res);
-  // const addSQL = `INSERT INTO boardgames (gamename, min_players, max_players, image_url, game_description) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
-  // const params = [ gamename, min_players, max_players, image_url, descriptions ];
-  // console.log('Params = ', params);
-  res.status(200).send('pages/favorites', 'Hello World' );
+  const addSQL = `INSERT INTO boardgames (gameid, gamename, min_players, max_players, image_url, game_description) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+  const values = [gameid, gamename, minplay, maxplay, image, descript];
+  client.query(addSQL, values)
+    .then(() => res.status(200).redirect('/favorites'));
+
 }
 
+function removeBGames(req, res) {
+  console.log('you made it to remove game!');
+  console.log('Remove ', req.body);
+  const delGame = req.body.gameid;
+  console.log('del gameid = ', delGame);
+  // DELETE FROM boardgames WHERE gameid = 'yKJz4SjHER';
+  const delSQL = `DELETE FROM boardgames WHERE gameid = $1 RETURNING *;`;
+  const values = [delGame];
+  client.query(delSQL, values)
+    .then(() => res.status(200).redirect('/favorites'))
+    .catch(err => errorHandler(req, res, err));
+}
 
 function Boardgames(obj) {
   this.gameid = obj.id;
   this.name = obj.name;
   this.min_players = obj.min_players || 'Not Reported';
   this.max_players = obj.max_players || 'Not Reported';
-  this.image = obj.images.small; // use small image
+  this.image_url = obj.images.small; // use small image
   this.description = obj.description_preview || 'No description found';
-  console.log('Constructor Obj ID = ', this.gameid);
 }
 
 
@@ -263,6 +275,7 @@ function Trivia(obj) {
 
 // Setup
 const SpotifyWebApi = require('spotify-web-api-node');
+const { render } = require('ejs');
 const SPOTIFY_ID = process.env.SPOTIFY_CLIENT_ID;
 const SPOTIFY_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const spotifyApi = new SpotifyWebApi({ clientId: SPOTIFY_ID, clientSecret: SPOTIFY_SECRET });
