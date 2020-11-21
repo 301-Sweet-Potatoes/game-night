@@ -78,3 +78,30 @@ form label {
   height: 380px;
 }
 /********* END PLAYLIST PAGE ********/
+
+
+
+/********* START ABOUT US PAGE ********/
+
+#about-us {
+  display: flex;
+  width: 70vw;
+  margin: 50px auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+#about-us h3 {
+  color: white;
+  width: 100%;
+  margin: 25px;
+}
+
+.person img {
+  width: 200px;
+  border-radius: 50%;
+  margin: 25px;
+}
+
+/********* END ABOUT US PAGE ********/
