@@ -5,38 +5,31 @@
   <%- include('../layout/head') %>
   <title>Game Night</title>
 </head>
+
 <body>
-  
-<header><h1><a href="/">Trivia</a></h1></header>
 
-<div class="container">
-  <div id="home" class="flex-center flex-column">
+  <header>
+    <h1><a href="/">Trivia</a></h1>
+  </header>
 
-    <div class="form-popup" id="triviaForm">
-      <form action="/trivia" method="post" class="form-container">
+  <div class="container">
+    <form action="/trivia" method="POST">
 
-
-        <label for="questions"><b>Questions</b></label>
+      <div class="flex-form">
+        <label for="questions">Questions</label>
         <input type="number" placeholder="How many Questions?" name="Questions" required>
+      </div>
+      <div class="flex-form">
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          <option value="General Knowledge">Music</option>
+          <option value="movies">Movies</option>
+        </select>
+      </div>
+      <button type="submit">Search</button>
 
-        <label for="category"><b>Category</b></label>
+    </form>
 
-
-        <div id="myDropdown" class="dropdown-content">
-          <select id="category" name="category">
-            <option value="General Knowledge">Music</option>
-            <option value="movies">Movies</option>
-
-          </select>
-
-          <button type="submit" class="btn">Search</button>
-
-      </form>
-
-
-    </div>
-    
-
-    </body>
+</body>
 
 </html>
