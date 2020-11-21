@@ -289,7 +289,19 @@ app.delete('/favorites/playlist', deletePlaylistHandler);
 // Handlers
 function errorHandler(req, res, err) {res.status(500).send(`Error: ${err}`);}
 
-function playlistHandler(req, res) { res.status(200).render('pages/playlist'); }
+function playlistHandler(req, res) {
+  spotifyApi.clientCredentialsGrant()
+    .then(data => {
+      spotifyApi.setAccessToken(data.body['access_token']);
+      spotifyApi.searchPlaylists('Game Night', { limit: 3 })
+        .then(data => {
+          let playlists = data.body.playlists.items.map(playlist => new Playlist(playlist));
+          res.status(200).render('pages/playlist', { playlists });
+        })
+        .catch(err => errorHandler(req, res, err));
+    })
+    .catch(err => errorHandler(req, res, err));
+}
 
 function searchPlaylistHandler(req, res) {
   let search = req.body.search;

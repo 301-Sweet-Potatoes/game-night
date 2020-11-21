@@ -1,14 +1,59 @@
-/********* START PLAYLIST PAGE ********/
+/********* START FEATURE PAGES ********/
+h1 a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+}
 
-#playlist-container {
+h2, label {
+  color: white;
+  font-size: 1.4rem;
+  margin: 10px;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-weight: 800;
+  margin: 15px;
+}
+
+form {
+  margin: 25px;
+}
+
+form input, form select {
+  width: 200px;
+  border: none;
+  height: 2rem;
+  border-radius: 5px;
+  display: inline;
+}
+
+form label {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  display: block;
+  margin: 10px;
+}
+
+.container {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   text-align: center;
+  width: 70vw;
+  max-width: 700px;
 }
 
-#playlist-container button { 
+
+.flex-form {
+  display: flex;
+  padding: 0 70px;
+  justify-content: space-evenly;
+}
+
+.container button { 
   margin: 10px;
   cursor: pointer;
   background-color:#ffffff;
@@ -17,36 +62,20 @@
   text-decoration:none;
   padding: 5px;
   height: 2rem;
+  font-size: 1rem;
   text-transform: uppercase;
 }
 
-#playlist {
+#search-result {
   margin: 25px auto;
 }
 
-#playlist h2 {
-  color: white;
-  font-size: 1.4rem;
-  margin: 10px;
-  text-transform: uppercase;
-}
+/********* END FEATURE PAGES ********/
 
-h1 a {
-  text-decoration: none;
-  text-transform: uppercase;
-  color: black;
-}
 
-#playlist-form input {
-  width: 200px;
-  border: none;
-  height: 2rem;
-  border-radius: 5px;
+/********* START PLAYLIST PAGE ********/
+.playlist-img {
+  height: 380px;
 }
-
-#playlist-form {
-  margin: 25px;
-}
-
 
 /********* END PLAYLIST PAGE ********/

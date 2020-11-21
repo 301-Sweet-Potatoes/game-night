@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('../layout/head') %>
   <title>Game Search Results</title>
 </head>
 <body>
-  <h1>Game Search Results</h1>
-  <div id='gameresults'>
+
+  <header><h1><a href="/">Choose Board Games</a></h1></header>
+  <div class='container'>
    
     <% gameInfo.forEach(game => { %>
       
       <form id="addGame" action="/favorites" method="POST">
         <fieldset>
           <img src="<%= game.image_url %>">
-          <h1><%= game.name %></h1>
+          <h2><%= game.name %></h2>
           <h3>Min Players: <%= game.min_players %> / Max Players: <%= game.max_players %></h3>
           <p><%= game.description %></p>
       
@@ -25,9 +25,10 @@
           <input type="hidden" name="max_players" value="<%= game.max_players %>">
           <input type="hidden" name="description" value="<%= game.description %>">
       
-          <p><button id="addBG" type="submit">ADD</button></p>
+          <button id="addBG" type="submit">Save Game</button>
         </fieldset>
       </form>
+
    <% }) %>
   </div>
 </body>
