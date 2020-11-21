@@ -5,16 +5,30 @@
   <title>Game Search Results</title>
 </head>
 <body>
+
   <header><h1><a href="/">Choose Board Games</a></h1></header>
   <div class='container'>
+   
     <% gameInfo.forEach(game => { %>
-      <form action="/favorites/<%= game.gameid %>" method="POST">
-      <img src = "<%= game.image %>">
-      <h2><%= game.name %></h2>
-      <h3>Min Players: <%= game.min_players %> / Max Players: <%= game.max_players %></h3>
-      <p><%= game.description %></p>
-      <button id="addBG" type="submit">Save Game</button>
-    </form>
+      
+      <form id="addGame" action="/favorites" method="POST">
+        <fieldset>
+          <img src="<%= game.image_url %>">
+          <h2><%= game.name %></h2>
+          <h3>Min Players: <%= game.min_players %> / Max Players: <%= game.max_players %></h3>
+          <p><%= game.description %></p>
+      
+          <input type="hidden" name="gameid" value="<%=game.gameid %>">
+          <input type="hidden" name="image_url" value="<%=game.image_url %>">
+          <input type="hidden" name="name" value="<%= game.name %>">
+          <input type="hidden" name="min_players" value="<%= game.min_players %>">
+          <input type="hidden" name="max_players" value="<%= game.max_players %>">
+          <input type="hidden" name="description" value="<%= game.description %>">
+      
+          <button id="addBG" type="submit">Save Game</button>
+        </fieldset>
+      </form>
+
    <% }) %>
   </div>
 </body>
