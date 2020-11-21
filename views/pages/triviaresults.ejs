@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('../layout/head') %>
   <title>Trivia Results</title>
 </head>
 
 <body>
-  <h1>Results Page</h1>
+  <header><h1><a href="/">Choose Trivia Questions</a></h1></header>
+
   <% console.log(triviaData, 'front end console log') %>
   <% triviaData.forEach(trivia => { %>
   <h2><%=trivia.question%></h2>
