@@ -75,7 +75,7 @@ app.get('/boardgames', (req, res) => {
 
 app.post('/gameresults', bgamesSearch);
 app.post('/favorites:game.gameid', addBG);
-// console.log('Game ID: ', );
+
 
 function bgamesSearch(req, res) {
   const clientID = process.env.MEMBER_ID;

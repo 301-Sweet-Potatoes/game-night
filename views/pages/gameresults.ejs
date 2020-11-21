@@ -7,6 +7,7 @@
 </head>
 <body>
   <h1>Game Search Results</h1>
+  <h2>Need Error Message</h2>
   <div id='gameresults'>
     <% gameInfo.forEach(game => { %>
       <form action="/favorites/<%= game.gameid %>" method="POST">
