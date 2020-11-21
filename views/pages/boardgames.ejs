@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('../layout/head') %>
   <title>Board Games</title>
 </head>
+
 <body>
-  <h1>Board Games</h1>
-  <form action="/gameresults" method="POST">
+  <header>
+    <h1><a href="/">Board Games</a></h1>
+  </header>
+  <div class="container">
+    <form action="/gameresults" method="POST">
+      <!-- <label><span>
+          Find games by:
+          <input type="radio" name="orderby" value="trending">Trending
+          <input type="radio" name="orderby" value="rank" >Rank</span>
+      </label>
+      <p>Or</p> -->
+      <input type="text" name="gamename" placeholder="Title of Game">
+      <button id="boardgames" type="submit">Search Games</button>
 
-    <label><span>Game Name<input type="text" name="gamename" placeholder="Title of Game"></span></label>
-    <label><span></span></label>
-    <button id="boardgames" type="submit">Search Games</button>
-  </form>
-
+    </form>
+  </div>
 
 </body>
+
 </html>

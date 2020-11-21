@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../layout/head') %>
+  <title>Trivia Results</title>
+</head>
+
+<body>
+
+  <header><h1><a href="/">Choose Trivia Questions</a></h1></header>
+
+  <% console.log(triviaData, 'front end console log') %>
+  <% triviaData.forEach(trivia => { %>
+  <h2><%=trivia.question%></h2>
+  <h3><%=trivia.correctanswer%></h3>
+
+
+
+  <form id="addtosavedTrivia" action="/addtrivia" method="post">
+    <fieldset>
+      <input type="hidden" name="question" value="<%= trivia.question %>">
+      <input type="hidden" name="answer" value="<%= trivia.correctanswer %>">
+      <input type="hidden" name="category" value="<%= trivia.category %>">
+      <button type="submit">Save Trivia</button>
+    </fieldset>
+  </form>
+  <% }) %>
+</body>
+
+</html>

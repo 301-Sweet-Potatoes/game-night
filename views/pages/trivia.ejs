@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trivia</title>
+  <%- include('../layout/head') %>
+  <title>Game Night</title>
 </head>
+
 <body>
-  <h1>Trivia</h1>
+
+  <header>
+    <h1><a href="/">Trivia</a></h1>
+  </header>
+
+  <div class="container">
+    <form action="/trivia" method="POST">
+
+      <div class="flex-form">
+        <label for="questions">Questions</label>
+        <input type="number" placeholder="How many Questions?" name="Questions" required>
+      </div>
+      <div class="flex-form">
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          <option value="General Knowledge">Music</option>
+          <option value="movies">Movies</option>
+        </select>
+      </div>
+      <button type="submit">Search</button>
+
+    </form>
+
 </body>
+
 </html>
