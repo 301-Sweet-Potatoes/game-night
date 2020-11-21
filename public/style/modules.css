@@ -81,6 +81,67 @@ form label {
 
 
 
+/************* favorites - mjm **********/
+
+#fav-b {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: 600px;
+  overflow: auto;
+  text-align: center;
+  
+
+  outline: pink 4pt solid;
+}
+
+#fav-b h1, h3, p {
+  color: black;
+}
+
+
+#fav-c {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: 600px;
+  overflow: auto;
+  text-align: center;
+  background-color: grey;
+
+  outline: pink 4pt solid;
+}
+
+#fav-c h1, h3, p {
+  color: black;
+}
+
+#remBG {
+  padding: 0px;
+  margin: auto;
+}
+
+#fav-d {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: 600px;
+  overflow: auto;
+  text-align: center;
+  
+
+  outline: pink 4pt solid;
+}
+
+#fav-d h1, h3, p {
+  color: black;
+}
+
+
+
+
+/************  end of favorites - mjm ********/
+
+
+
+
 /********* START ABOUT US PAGE ********/
 
 #about-us {
@@ -105,3 +166,4 @@ form label {
 }
 
 /********* END ABOUT US PAGE ********/
+
