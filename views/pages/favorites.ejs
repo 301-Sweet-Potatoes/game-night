@@ -21,14 +21,17 @@
 
   <main>
     <section class="fav-boxes">
+
       <div id="fav-a"><h1>FAVORITES</h1></div>
 
       <div id="decoration1"><img src="../img/curlyclock.png"></div>
 
       <!-- Trivia Partial -->
       <div id="fav-b"class="fav-outer">
-        </div class="fav-inner">
-        <!-- Include partial here -->
+        <div class="fav-inner">
+          <% trivia.forEach(triviaquestions => { %>
+          <%- include('../partials/savedtrivia', { triviaquestions }) %>
+          <% }) %>
         </div>
       </div>
 

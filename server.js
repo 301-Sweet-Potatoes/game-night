@@ -36,19 +36,24 @@ function aboutUsHandler(req, res) {
 function favoritesHandler(req, res) {
   const SQLPLAYLIST = 'SELECT * FROM playlist;';
   const SQLBOARDGAMES = 'SELECT * FROM boardgames;';
-  
+  const SQLTRIVIA = 'SELECT * FROM trivia;';
   // LJ: this will need to be restructured when the next person adds their query.
   // See savePlaylistHandler for nested client queries
   client.query(SQLPLAYLIST)
-    .then((playlist) => { 
+    .then((playlist) => {
       client.query(SQLBOARDGAMES)
         .then((boardgame) => {
-          res.status(200).render('pages/favorites', { playlist: playlist.rows[0], boardgames: boardgame.rows })
+          client.query(SQLTRIVIA)
+            .then((trivia) => {
+              res.status(200).render('pages/favorites', { playlist: playlist.rows[0], boardgames: boardgame.rows, trivia: trivia.rows })
+            })
+            .catch(err => errorHandler(req, res, err))
         })
         .catch(err => errorHandler(req, res, err))
     })
     .catch(err => errorHandler(req, res, err));
 }
+
 
 
 
@@ -190,29 +195,39 @@ function Boardgames(obj) {
 
 // Routes
 app.get('/trivia', triviaQuestions);
-app.post('/trivia', searchTrivia);
-app.post('/addtrivia', addtodb);
+app.post('/triviaresults', searchTrivia);
+app.post('/favorites', addtodb);
+app.delete('/favorites/deletetrivia', deleteTrivia);
 
 // Setup
 
 
 
 // Handlers
+
+function deleteTrivia(req, res) {
+  console.log('ready to delete');
+}
+
+
+
+
 function triviaQuestions(req, res) {
   console.log('made it to trivia questions');
 
   res.render('pages/trivia');
 }
+
 function addtodb(req, res) {
-  console.log('hello! you just saved a question', req.body);
   const category = req.body.category;
+  console.log('hello! you just saved a question', category);
   const correctanswer = req.body.answer;
   const question = req.body.question;
   let SQL = 'INSERT INTO trivia (category, question, correctanswer) VALUES ($1, $2, $3) RETURNING *;';
   let values = [category, question, correctanswer];
 
   client.query(SQL, values)
-    .then(data => console.log('data', data));
+    .then(() => res.status(200).redirect('/favorites'));
 
 }
 
@@ -240,27 +255,27 @@ function searchTrivia(req, res) {
 }
 
 
-function searchTrivia(req, res) {
-  //pass variables into the url
-  //amount=${value}
+// function searchTrivia(req, res) {
+//   //pass variables into the url
+//   //amount=${value}
 
 
-  const triviaURL = `https://opentdb.com/api.php?amount=2&category=9&difficulty=easy&type=boolean`;
-  console.log('Search Trivia URL: ', triviaURL);
-  console.log('Function Commit');
-  // console.log('Response = ', res);
-  superagent.get(triviaURL)
-    .then(trivia => {
-      let result = trivia.body.results;
-      let triviaQuestions = result.map(triviaData => {
-        return new Trivia(triviaData);
-      });
-      console.log('TrivaQuestions ', triviaQuestions);
-      res.status(200).render('pages/triviaresults', { triviaData: triviaQuestions });
-      // res.status(200).render('pages/triviaresults');
-    })
-    .catch(err => errorHandler(req, res, err));
-}
+//   const triviaURL = `https://opentdb.com/api.php?amount=2&category=9&difficulty=easy&type=boolean`;
+//   console.log('Search Trivia URL: ', triviaURL);
+//   console.log('Function Commit');
+//   // console.log('Response = ', res);
+//   superagent.get(triviaURL)
+//     .then(trivia => {
+//       let result = trivia.body.results;
+//       let triviaQuestions = result.map(triviaData => {
+//         return new Trivia(triviaData);
+//       });
+//       console.log('TrivaQuestions ', triviaQuestions);
+//       res.status(200).render('pages/triviaresults', { triviaData: triviaQuestions });
+//       // res.status(200).render('pages/triviaresults');
+//     })
+//     .catch(err => errorHandler(req, res, err));
+// }
 
 
 // Constructor for trivia
@@ -309,7 +324,7 @@ app.post('/favorites/playlist', savePlaylistHandler);
 app.delete('/favorites/playlist', deletePlaylistHandler);
 
 // Handlers
-function errorHandler(req, res, err) {res.status(500).send(`Error: ${err}`);}
+function errorHandler(req, res, err) { res.status(500).send(`Error: ${err}`); }
 
 function playlistHandler(req, res) {
   spotifyApi.clientCredentialsGrant()
@@ -364,7 +379,7 @@ function deletePlaylistHandler(req, res) {
 
 
 // Constructor
-function Playlist(obj){
+function Playlist(obj) {
   this.description = obj.description;
   this.url = obj.external_urls.spotify;
   this.image = obj.images[0].url;
