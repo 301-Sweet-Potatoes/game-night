@@ -1,13 +1,11 @@
-<section>
-
-
-<% if (playlist) {%> 
-  <h1><%= playlist.name %></h1>
-    <img src="<%= playlist.image %>" height="380px"></img>
-    <iframe src="https://open.spotify.com/embed/playlist/<%= playlist.spotifyid %>" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-  
-    <form action="/favorites/playlist?_method=DELETE" method="POST">
-      <button type="submit">Remove Playlist</button>
-    </form>
+<% if (playlist) {%>
+<h2><%= playlist.name %></h2>
+<img id="playlist-img-partial" src="<%= playlist.image %>"></img>
+<iframe src="https://open.spotify.com/embed/playlist/<%= playlist.spotifyid %>" width="300" height="380"
+  allowtransparency="true" allow="encrypted-media"></iframe>
+<form action="/favorites/playlist?_method=DELETE" method="POST">
+  <button class="deleteButton" type="submit">
+    <img src="../img/deletebutton.png">
+  </button>
+</form>
 <% } %>
-</section>

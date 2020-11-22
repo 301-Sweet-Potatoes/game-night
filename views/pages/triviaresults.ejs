@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../layout/head') %>
+  <title>Trivia Results</title>
+</head>
+
+<body>
+
+  <header>
+    <h1><a href="/">Choose Trivia Questions</a></h1>
+  </header>
+
+ 
+  <% triviaData.forEach(pumpkin => { %>
+    <form id="addtosavedTrivia" action="/favorites" method="POST">
+    <fieldset>
+  <h2><%=pumpkin.question%></h2>
+  <h3><%=pumpkin.correctanswer%></h3>
+
+
+  
+      <input type="hidden" name="question" value="<%= pumpkin.question %>">
+      <input type="hidden" name="answer" value="<%= pumpkin.correctanswer %>">
+      <input type="hidden" name="category" value="<%= pumpkin.category %>">
+      
+      <button type="submit">Save Trivia</button>
+
+    </fieldset>
+    
+  </form>
+  <% }) %>
+</body>
+
+</html>

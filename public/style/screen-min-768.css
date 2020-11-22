@@ -5,7 +5,7 @@ body {
 
 }
 
-#header {
+header {
   display: inline-block;
   background: url('../img/goldbar.jpg');
   background-repeat: repeat-x;
@@ -14,12 +14,12 @@ body {
   padding: 0px;
 }
 
-#header>h1 {
+header>h1 {
   font-family: 'Abril Fatface', cursive;
   color: black;
   text-align: center;
-  font-size: 50px;
-  padding: 30px;
+  font-size: 35px;
+  padding: 2rem;
 }
 
 .boxes {
@@ -260,7 +260,9 @@ body {
     left: 1680px;
   } */
   #footer {
-    position: absolute;
+    position: fixed;
+    left: 0;
+    bottom: 0;
     background: url('../img/goldbar.jpg');
     background-repeat: repeat-x;
     height: 75px;
