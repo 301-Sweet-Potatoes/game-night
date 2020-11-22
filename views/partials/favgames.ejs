@@ -5,7 +5,7 @@
     <form action="/favorites/favgames?_method=DELETE" method="POST">
       <fieldset>
         <img src="<%= game.image_url %>">
-        <h1><%= game.gamename %></h1>
+        <h2><%= game.gamename %></h2>
         <h3>Min Players: <%= game.min_players %> / Max Players: <%= game.max_players %></h3>
         
     
@@ -16,7 +16,9 @@
         <input type="hidden" name="max_players" value="<%= game.max_players %>">
         
     
-        <button id="remBG" type="submit"><img src = "../img/deletebutton.png" height="50" width="100"></button>
+        <button class="deleteButton" type="submit">
+          <img src="../img/deletebutton.png">
+        </button>
       </fieldset>
     </form>
   </div>
