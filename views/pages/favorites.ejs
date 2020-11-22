@@ -10,62 +10,49 @@
   <header>
     <h1><a href="/">Favorites</a></h1>
   </header>
-  <a href='/index.ejs'>Home</a>
+  <div class="navbar">
+    <div class="nav">
+      <div id="home"><img src="../img/homebutton.png"></div>
+      <div id="search"><img src="../img/searchbutton.png"></div>
+      <div id="about"><img src="../img/aboutbutton.png"></div>
+      <div id="fav"><a href="/favorites"><img src="../img/favbutton1.png"></a></div>
+    </div>
+  </div>
+
   <main>
     <section class="fav-boxes">
-      <div id="fav-a">
-        <h1>FAVORITES</h1>>
-      </div>
+
+      <div id="fav-a"><h1>FAVORITES</h1></div>
 
       <div id="decoration1"><img src="../img/curlyclock.png"></div>
 
-
-      <div id="fav-b">Trivia
-        <% trivia.forEach(triviaquestions=> {%>
-        <%- include('../partials/savedtrivia', {triviaquestions})%>
-
-        <% }) %>
-
-
+      <!-- Trivia Partial -->
+      <div id="fav-b"class="fav-outer">
+        <div class="fav-inner">
+          <% trivia.forEach(triviaquestions => { %>
+          <%- include('../partials/savedtrivia', { triviaquestions }) %>
+          <% }) %>
+        </div>
       </div>
 
-
-
-
-      <div id="fav-c">Games
-
-        <% boardgames.forEach(game => { %>
-        <%- include('../partials/favgames', { game }) %>
-        <% }) %>
-        <div id="gameaddbutton"><img src="../img/addbutton.png" height="50" width="100"></div>
-        <div id="gamedelbutton"><img src="../img/deletebutton.png" height="50" width="100"></div>
+      <!-- Board Games Partial -->
+      <div id="fav-c" class="fav-outer">
+        <div class="fav-inner">
+          <% boardgames.forEach(game => { %>
+          <%- include('../partials/favgames', { game }) %>
+          <% }) %>
+        </div>
       </div>
 
-      <!-- Playlist Div -->
-      <div id="fav-d">
-        <%- include('../partials/playlist', { playlist }) %>
-        <img src="../img/addbutton.png" height="50" width="100" id="playaddbutton">
-        <img src="../img/deletebutton.png" height="50" width="100" id="playdelbutton">
+      <!-- Playlist Partial -->
+      <div id="fav-d" class="fav-outer">
+        <div class ="fav-inner">
+          <%- include('../partials/playlist', { playlist }) %>
+        </div>
       </div>
 
     </section>
-
-
-
-
-    <!-- trivia div -->
-    <div id="fav-e">Trivia
-
-      <% trivia.forEach(triviaquestions => { %>
-      <%- include('../partials/savedtrivia', { triviaquestions }) %>
-      <% }) %>
-      <div id="triviaaddbutton"><img src="../img/addbutton.png" height="50" width="100"></div>
-      <div id="triviadeletebutton"><img src="../img/deletebutton.png" height="50" width="100"></div>
-    </div>
   </main>
-  <footer>
-    <div id="footer"></div>
-  </footer>
 </body>
 
 </html>

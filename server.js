@@ -22,10 +22,15 @@ app.use(methodOverride('_method'));
 // Routes
 app.get('/', homeHandler);
 app.get('/favorites', favoritesHandler);
+app.get('/aboutus', aboutUsHandler);
 
 // Route Handlers
 function homeHandler(req, res) {
-  res.status(200).render('index.ejs');
+  res.status(200).render('index');
+}
+
+function aboutUsHandler(req, res) {
+  res.status(200).render('pages/aboutus');
 }
 
 function favoritesHandler(req, res) {
