@@ -97,22 +97,29 @@ app.delete('/favorites/favgames', removeBGames);
 
 function bgamesSearch(req, res) {
   const clientID = process.env.MEMBER_ID;
-  const title = ('title = ', req.body.gamename);
-  console.log('Game Title = ', title);
-  // let bgOrderBy = (req.body.orderby);
-  let bgamesURL = `https://api.boardgameatlas.com/api/search?name=${title}&client_id=${clientID}&limit=10`;
-
+  const gameTitle = ('title = ', req.body.gamename);
+  let bgOrderBy = (req.body.orderby);
+  let bgamesURL = '';
+  // let bgamesURL = `https://api.boardgameatlas.com/api/search?name=${title}&client_id=${clientID}&limit=10`;
 
   // TODO:   STRETCH GOAL: add back the orderby Trending and Ranking
 
-  // if (req.body.orderby === 'trending' || 'rank') {
-  //   let bgamesURL = `https://api.boardgameatlas.com/api/search?order_by=${bgOrderBy}&client_id=${clientID}&limit=10`;
+  if (bgOrderBy === 'trending' || bgOrderBy === 'rank') {
+    bgamesURL = `https://api.boardgameatlas.com/api/search?order_by=${bgOrderBy}&client_id=${clientID}&limit=10`;
 
-  // } else {
-  //   (req.body.orderby === 'title')
-  //   let bgamesURL = `https://api.boardgameatlas.com/api/search?order_by=${title}&client_id=${clientID}&limit=10`;
-  // }
-  /* ---------------------------------------------------------------*/
+    console.log('Order by = ', bgOrderBy);
+    console.log('Search by Rank or Trending and Title is NULL');
+
+  } else {
+    // (bgOrderby === 'null');
+    bgamesURL = `https://api.boardgameatlas.com/api/search?name=${gameTitle}&client_id=${clientID}&limit=10`;
+
+    console.log('Order by = ', bgOrderBy);
+    console.log('Title is ', gameTitle);
+
+  }
+
+  console.log('URL = ', bgamesURL);
 
   superagent.get(bgamesURL)
     .then(game => {
@@ -129,7 +136,6 @@ function bgamesSearch(req, res) {
 
 function addBG(req, res) {
   const gameid = req.body.gameid;
-  console.log('Add gameid = ', gameid);
   const gamename = req.body.name;
   const minplay = req.body.min_players;
   const maxplay = req.body.max_players;
@@ -163,6 +169,8 @@ function Boardgames(obj) {
   this.max_players = obj.max_players || 'Not Reported';
   this.image_url = obj.images.small; // use small image
   this.description = obj.description_preview || 'No description found';
+  this.rank = obj.rank || 'No rank Found';
+  this.trending = obj.trending_rank || 'No Trend found';
 }
 
 

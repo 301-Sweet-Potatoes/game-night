@@ -14,7 +14,8 @@
       <form id="addGame" action="/favorites" method="POST">
         <fieldset>
           <img src="<%= game.image_url %>">
-          <h2><%= game.name %></h2>
+          <h2>Name: <%= game.name %> </h2>
+          <h3>Rank: <%= game.rank %> || Trending: <%= game.trending %></h3>
           <h3>Min Players: <%= game.min_players %> / Max Players: <%= game.max_players %></h3>
           <p><%= game.description %></p>
       
