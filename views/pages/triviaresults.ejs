@@ -14,8 +14,8 @@
   </header>
 
  
-  <% triviaData.forEach(pumpkin => { %>
-    <form id="addtosavedTrivia" action="/favorites" method="POST">
+  <% triviaQuestions.forEach(pumpkin => { %>
+    <form id="addtosavedTrivia" action="/triviafavs" method="POST">
     <fieldset>
   <h2><%=pumpkin.question%></h2>
   <h3><%=pumpkin.correctanswer%></h3>

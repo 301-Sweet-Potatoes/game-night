@@ -204,17 +204,29 @@ function Boardgames(obj) {
 // Routes
 app.get('/trivia', triviaQuestions);
 app.post('/triviaresults', searchTrivia);
-app.post('/favorites', addtodb);
-app.delete('/favorites/deletetrivia', deleteTrivia);
+app.post('/triviafavs', addtodb);
+app.delete('/triviafavs/deletetrivia', deleteTrivia);
 
 // Setup
 
-
+/*
+https://opentdb.com/api.php?amount=2&category=9&difficulty=easy&type=boolean
+limit nuber of questions to 10. Render the number of question the user enters.
+the number of trivia questions should be represented with a $ in variable.
+set up a variable amount, category and difficulty.
+*/
 
 // Handlers
 
 function deleteTrivia(req, res) {
   console.log('ready to delete');
+  const tquestion = req.body.question;
+  console.log('tquestion', tquestion);
+  const deletetrivia = `DELETE FROM trivia WHERE question = $1 RETURNING * ;`;
+  const val = [tquestion];
+  client.query(deletetrivia, val)
+    .then(() => res.status(200).redirect('/favorites'))
+    .catch(err => errorHandler(req, res, err));
 }
 
 
@@ -223,7 +235,11 @@ function deleteTrivia(req, res) {
 function triviaQuestions(req, res) {
   console.log('made it to trivia questions');
 
-  res.render('pages/trivia');
+
+
+
+
+  res.status(200).render('pages/trivia');
 }
 
 function addtodb(req, res) {
@@ -241,50 +257,21 @@ function addtodb(req, res) {
 
 
 function searchTrivia(req, res) {
-  //pass variables into the url
-  //amount=${value}
 
 
-  const triviaURL = `https://opentdb.com/api.php?amount=2&category=9&difficulty=easy&type=boolean`;
+
+  const triviaURL = `https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=boolean`;
   console.log('Search Trivia URL: ', triviaURL);
-  console.log('Function Commit');
-  // console.log('Response = ', res);
   superagent.get(triviaURL)
     .then(trivia => {
       let result = trivia.body.results;
       let triviaQuestions = result.map(triviaData => {
         return new Trivia(triviaData);
       });
-      console.log('TrivaQuestions ', triviaQuestions);
-      res.status(200).render('pages/triviaresults', { triviaData: triviaQuestions });
-      // res.status(200).render('pages/triviaresults');
+      res.status(200).render('pages/triviaresults', { triviaQuestions });
     })
     .catch(err => errorHandler(req, res, err));
 }
-
-
-// function searchTrivia(req, res) {
-//   //pass variables into the url
-//   //amount=${value}
-
-
-//   const triviaURL = `https://opentdb.com/api.php?amount=2&category=9&difficulty=easy&type=boolean`;
-//   console.log('Search Trivia URL: ', triviaURL);
-//   console.log('Function Commit');
-//   // console.log('Response = ', res);
-//   superagent.get(triviaURL)
-//     .then(trivia => {
-//       let result = trivia.body.results;
-//       let triviaQuestions = result.map(triviaData => {
-//         return new Trivia(triviaData);
-//       });
-//       console.log('TrivaQuestions ', triviaQuestions);
-//       res.status(200).render('pages/triviaresults', { triviaData: triviaQuestions });
-//       // res.status(200).render('pages/triviaresults');
-//     })
-//     .catch(err => errorHandler(req, res, err));
-// }
-
 
 // Constructor for trivia
 
