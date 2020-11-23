@@ -8,14 +8,12 @@
         <h2><%= game.gamename %></h2>
         <h3>Min Players: <%= game.min_players %> / Max Players: <%= game.max_players %></h3>
         
-    
         <input type="hidden" name="gameid" value="<%=game.gameid%>">
         <input type="hidden" name="image_url" value="<%=game.image_url%>">
         <input type="hidden" name="name" value="<%= game.gamename %>">
         <input type="hidden" name="min_players" value="<%= game.min_players %>">
         <input type="hidden" name="max_players" value="<%= game.max_players %>">
         
-    
         <button class="deleteButton" type="submit">
           <img src="../img/deletebutton.png">
         </button>

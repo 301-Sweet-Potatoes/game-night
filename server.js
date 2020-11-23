@@ -116,7 +116,6 @@ function bgamesSearch(req, res) {
 
     console.log('Order by = ', bgOrderBy);
     console.log('Title is ', gameTitle);
-
   }
 
   console.log('URL = ', bgamesURL);
@@ -255,11 +254,7 @@ function addtodb(req, res) {
 
 }
 
-
 function searchTrivia(req, res) {
-
-
-
   const triviaURL = `https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=boolean`;
   console.log('Search Trivia URL: ', triviaURL);
   superagent.get(triviaURL)

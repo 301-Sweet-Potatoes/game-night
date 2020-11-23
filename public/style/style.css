@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Oswald&family=Playfair+Display&family=Raleway&display=swap');
 @import "reset.css";
@@ -6,13 +5,3 @@
  @import "ani.css";
  @import "modules.css";
  @import "base.css";
- 
-=======
-@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Oswald&family=Playfair+Display&family=Raleway&display=swap');
-@import "reset.css";
- @import "layout.css";
- @import "ani.css";
- @import "modules.css";
- @import "base.css";
->>>>>>> d413c2aae08f062015fe7be3a99a45057fcbdf68
