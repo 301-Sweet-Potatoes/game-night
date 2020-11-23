@@ -8,10 +8,10 @@
 
 <body>
   <header>
-    <div id ="header"><h1>GAME NIGHT</h1></div>
-    <div id = "triviaHeader"><h1>TRIVIA</h1> </div>
+    <%- include('../layout/header') %>
   </header>
-
+  
+  <div id = "triviaHeader"><h1>TRIVIA</h1> </div>
  
   <% triviaQuestions.forEach(pumpkin => { %>
     <form id="addtosavedTrivia" action="/triviafavs" method="POST">

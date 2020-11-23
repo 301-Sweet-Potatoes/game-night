@@ -1,28 +1,5 @@
 body {
   background: url('../img/goldbackground.png');
-  background-color:brown;
-}
-
-
-/* //universal header */
-
-
-#header {
-  display: inline-block;
- background: url('../img/goldbar.jpg');
- background-repeat: repeat-x;
- height: 100px;
- width: 100%;
- padding: 0px;
-}
-
-#header >h1 {
-  font-family: 'Abril Fatface', cursive;
-  color: black;
-  text-align: center;
-  font-size: 50px;
-  margin-top: 20px;
- 
 }
 
 /* //feature pages headers */

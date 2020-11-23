@@ -2,49 +2,29 @@
 <html lang="en">
 
 <head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style/style.css" />
-  <link rel="stylesheet" type="text/css" media="only screen and (max-width: 470px)" href="styles/screen-max-470.css"/>
-  <link rel="stylesheet" type="text/css" media="only screen and (max-width: 768px)" href="style/screen-min-768.css"/>
-  <link rel="stylesheet" type ="text/css" media="only screen and (min-width: 769px)" href="style/screen-min-1024.css"/>
-
   <%- include('../layout/head') %>
   <title>Favorites</title>
 </head>
 
 <body>
   <header>
-    <h1><a href="/">Favorites</a></h1>
+    <%- include('../layout/header') %>
   </header>
+
   <div class="navbar">
-
-    <div class = "nav">
-    <div id="home"><img src="../img/homebutton.png"></div>
-    <div id="search"><img src="../img/searchbutton.png"></div>
-    <div id="about"><img src="../img/aboutbutton.png"></div>
-    <div id="fav"><a href="/favorites"><img src="../img/favbutton1.png"></a></div>
-
-
-  </div>
+    <div class="nav">
+      <div id="home"><img src="../img/homebutton.png"></div>
+      <div id="search"><img src="../img/searchbutton.png"></div>
+      <div id="about"><img src="../img/aboutbutton.png"></div>
+      <div id="fav"><a href="/favorites"><img src="../img/favbutton1.png"></a></div>
+    </div>
   </div>
   
   <main>
     <section class = "fav-boxes">
-    <div id = "fav-a"><h1>FAVORITES</h1> </div>
 
-    
-  
-  <main>
-
-    <section class = "fav-boxes">
-    <div id = "fav-a"><h1>FAVORITES</h1> </div>
-
-    
-
+      <div id = "fav-a"><h1>FAVORITES</h1></div>
       
-
       <div id="decoration1"></div>
      
       <div id="hotairballoon">

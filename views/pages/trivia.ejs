@@ -3,22 +3,23 @@
 
 <head>
   <%- include('../layout/head') %>
-  <title>Game Night</title>
+  <title>Trivia</title>
 </head>
 
 <body>
 
   <header>
-    <div id ="header"><h1>GAME NIGHT</h1></div>
-    <div id = "triviaHeader"><h1>TRIVIA</h1> </div>
+    <%- include('../layout/header') %>
   </header>
+
+  <div id = "triviaHeader"><h1>TRIVIA</h1> </div>
 
   <div class="container">
     <form action="/triviaresults" method="POST">
 
       <div class="flex-form">
-        <label for="questions">Up to 10 Questions Questions</label>
-        <input type="number" placeholder="How many Questions?" name="Questions" min="1" max="10"required>
+        <label for="questions">How many Questions?</label>
+        <input type="number" placeholder="Enter number to up to 10" name="Questions" min="1" max="10"required>
       </div>
       <div class="flex-form">
         <label for="category">Category</label>
