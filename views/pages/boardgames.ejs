@@ -8,19 +8,21 @@
 
 <body>
   <header>
-    <h1><a href="/">Board Games</a></h1>
+    <div id ="header"><h1>GAME NIGHT</h1></div>
   </header>
+  <div id = "boardGameHeader"><h1>BOARD GAMES</h1> </div>
   <div class="container">
     <form action="/gameresults" method="POST">
-      <!-- <label><span>
-          Find games by:
+      <label><span>
+         <h3>Find games by:</h3> 
           <input type="radio" name="orderby" value="trending">Trending
           <input type="radio" name="orderby" value="rank" >Rank</span>
       </label>
-      <p>Or</p> -->
-      <input type="text" name="gamename" placeholder="Title of Game">
-      <button id="boardgames" type="submit">Search Games</button>
-
+      <label><span>
+      <h3>Or Search by Title</h3>
+      <input type="text" name="gamename" placeholder="Title of Game"></span>
+      <p><button id="boardgames" type="submit">Search Games</button></p>
+      </label>
     </form>
   </div>
 

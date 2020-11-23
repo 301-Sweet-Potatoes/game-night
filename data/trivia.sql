@@ -5,4 +5,4 @@ CREATE TABLE trivia (
   category VARCHAR(500),
   question VARCHAR(500),
   correctanswer VARCHAR(500)
-)
+);

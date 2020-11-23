@@ -9,15 +9,16 @@
 <body>
 
   <header>
-    <h1><a href="/">Trivia</a></h1>
+    <div id ="header"><h1>GAME NIGHT</h1></div>
+    <div id = "triviaHeader"><h1>TRIVIA</h1> </div>
   </header>
 
   <div class="container">
-    <form action="/trivia" method="POST">
+    <form action="/triviaresults" method="POST">
 
       <div class="flex-form">
-        <label for="questions">Questions</label>
-        <input type="number" placeholder="How many Questions?" name="Questions" required>
+        <label for="questions">Up to 10 Questions Questions</label>
+        <input type="number" placeholder="How many Questions?" name="Questions" min="1" max="10"required>
       </div>
       <div class="flex-form">
         <label for="category">Category</label>

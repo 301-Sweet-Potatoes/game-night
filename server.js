@@ -22,28 +22,38 @@ app.use(methodOverride('_method'));
 // Routes
 app.get('/', homeHandler);
 app.get('/favorites', favoritesHandler);
+app.get('/aboutus', aboutUsHandler);
 
 // Route Handlers
 function homeHandler(req, res) {
-  res.status(200).render('index.ejs');
+  res.status(200).render('index');
+}
+
+function aboutUsHandler(req, res) {
+  res.status(200).render('pages/aboutus');
 }
 
 function favoritesHandler(req, res) {
   const SQLPLAYLIST = 'SELECT * FROM playlist;';
   const SQLBOARDGAMES = 'SELECT * FROM boardgames;';
-  
+  const SQLTRIVIA = 'SELECT * FROM trivia;';
   // LJ: this will need to be restructured when the next person adds their query.
   // See savePlaylistHandler for nested client queries
   client.query(SQLPLAYLIST)
-    .then((playlist) => { 
+    .then((playlist) => {
       client.query(SQLBOARDGAMES)
         .then((boardgame) => {
-          res.status(200).render('pages/favorites', { playlist: playlist.rows[0], boardgames: boardgame.rows })
+          client.query(SQLTRIVIA)
+            .then((trivia) => {
+              res.status(200).render('pages/favorites', { playlist: playlist.rows[0], boardgames: boardgame.rows, trivia: trivia.rows })
+            })
+            .catch(err => errorHandler(req, res, err))
         })
         .catch(err => errorHandler(req, res, err))
     })
     .catch(err => errorHandler(req, res, err));
 }
+
 
 
 
@@ -87,22 +97,28 @@ app.delete('/favorites/favgames', removeBGames);
 
 function bgamesSearch(req, res) {
   const clientID = process.env.MEMBER_ID;
-  const title = ('title = ', req.body.gamename);
-  console.log('Game Title = ', title);
-  // let bgOrderBy = (req.body.orderby);
-  let bgamesURL = `https://api.boardgameatlas.com/api/search?name=${title}&client_id=${clientID}&limit=10`;
-
+  const gameTitle = ('title = ', req.body.gamename);
+  let bgOrderBy = (req.body.orderby);
+  let bgamesURL = '';
+  // let bgamesURL = `https://api.boardgameatlas.com/api/search?name=${title}&client_id=${clientID}&limit=10`;
 
   // TODO:   STRETCH GOAL: add back the orderby Trending and Ranking
 
-  // if (req.body.orderby === 'trending' || 'rank') {
-  //   let bgamesURL = `https://api.boardgameatlas.com/api/search?order_by=${bgOrderBy}&client_id=${clientID}&limit=10`;
+  if (bgOrderBy === 'trending' || bgOrderBy === 'rank') {
+    bgamesURL = `https://api.boardgameatlas.com/api/search?order_by=${bgOrderBy}&client_id=${clientID}&limit=10`;
 
-  // } else {
-  //   (req.body.orderby === 'title')
-  //   let bgamesURL = `https://api.boardgameatlas.com/api/search?order_by=${title}&client_id=${clientID}&limit=10`;
-  // }
-  /* ---------------------------------------------------------------*/
+    console.log('Order by = ', bgOrderBy);
+    console.log('Search by Rank or Trending and Title is NULL');
+
+  } else {
+    // (bgOrderby === 'null');
+    bgamesURL = `https://api.boardgameatlas.com/api/search?name=${gameTitle}&client_id=${clientID}&limit=10`;
+
+    console.log('Order by = ', bgOrderBy);
+    console.log('Title is ', gameTitle);
+  }
+
+  console.log('URL = ', bgamesURL);
 
   superagent.get(bgamesURL)
     .then(game => {
@@ -119,7 +135,6 @@ function bgamesSearch(req, res) {
 
 function addBG(req, res) {
   const gameid = req.body.gameid;
-  console.log('Add gameid = ', gameid);
   const gamename = req.body.name;
   const minplay = req.body.min_players;
   const maxplay = req.body.max_players;
@@ -153,6 +168,8 @@ function Boardgames(obj) {
   this.max_players = obj.max_players || 'Not Reported';
   this.image_url = obj.images.small; // use small image
   this.description = obj.description_preview || 'No description found';
+  this.rank = obj.rank || 'No rank Found';
+  this.trending = obj.trending_rank || 'No Trend found';
 }
 
 
@@ -185,78 +202,71 @@ function Boardgames(obj) {
 
 // Routes
 app.get('/trivia', triviaQuestions);
-app.post('/trivia', searchTrivia);
-app.post('/addtrivia', addtodb);
+app.post('/triviaresults', searchTrivia);
+app.post('/triviafavs', addtodb);
+app.delete('/triviafavs/deletetrivia', deleteTrivia);
 
 // Setup
 
-
+/*
+https://opentdb.com/api.php?amount=2&category=9&difficulty=easy&type=boolean
+limit nuber of questions to 10. Render the number of question the user enters.
+the number of trivia questions should be represented with a $ in variable.
+set up a variable amount, category and difficulty.
+*/
 
 // Handlers
+
+function deleteTrivia(req, res) {
+  console.log('ready to delete');
+  const tquestion = req.body.question;
+  console.log('tquestion', tquestion);
+  const deletetrivia = `DELETE FROM trivia WHERE question = $1 RETURNING * ;`;
+  const val = [tquestion];
+  client.query(deletetrivia, val)
+    .then(() => res.status(200).redirect('/favorites'))
+    .catch(err => errorHandler(req, res, err));
+}
+
+
+
+
 function triviaQuestions(req, res) {
   console.log('made it to trivia questions');
 
-  res.render('pages/trivia');
+
+
+
+
+  res.status(200).render('pages/trivia');
 }
+
 function addtodb(req, res) {
-  console.log('hello! you just saved a question', req.body);
   const category = req.body.category;
+  console.log('hello! you just saved a question', category);
   const correctanswer = req.body.answer;
   const question = req.body.question;
   let SQL = 'INSERT INTO trivia (category, question, correctanswer) VALUES ($1, $2, $3) RETURNING *;';
   let values = [category, question, correctanswer];
 
   client.query(SQL, values)
-    .then(data => console.log('data', data));
+    .then(() => res.status(200).redirect('/favorites'));
 
 }
 
-
 function searchTrivia(req, res) {
-  //pass variables into the url
-  //amount=${value}
-
-
-  const triviaURL = `https://opentdb.com/api.php?amount=2&category=9&difficulty=easy&type=boolean`;
+  const triviaURL = `https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=boolean`;
   console.log('Search Trivia URL: ', triviaURL);
-  console.log('Function Commit');
-  // console.log('Response = ', res);
   superagent.get(triviaURL)
     .then(trivia => {
       let result = trivia.body.results;
       let triviaQuestions = result.map(triviaData => {
         return new Trivia(triviaData);
       });
-      console.log('TrivaQuestions ', triviaQuestions);
-      res.status(200).render('pages/triviaresults', { triviaData: triviaQuestions });
-      // res.status(200).render('pages/triviaresults');
+      res.status(200).render('pages/triviaresults', { triviaQuestions });
     })
     .catch(err => errorHandler(req, res, err));
 }
-
-
-function searchTrivia(req, res) {
-  //pass variables into the url
-  //amount=${value}
-
-
-  const triviaURL = `https://opentdb.com/api.php?amount=2&category=9&difficulty=easy&type=boolean`;
-  console.log('Search Trivia URL: ', triviaURL);
-  console.log('Function Commit');
-  // console.log('Response = ', res);
-  superagent.get(triviaURL)
-    .then(trivia => {
-      let result = trivia.body.results;
-      let triviaQuestions = result.map(triviaData => {
-        return new Trivia(triviaData);
-      });
-      console.log('TrivaQuestions ', triviaQuestions);
-      res.status(200).render('pages/triviaresults', { triviaData: triviaQuestions });
-      // res.status(200).render('pages/triviaresults');
-    })
-    .catch(err => errorHandler(req, res, err));
-}
-
 
 // Constructor for trivia
 
@@ -304,7 +314,7 @@ app.post('/favorites/playlist', savePlaylistHandler);
 app.delete('/favorites/playlist', deletePlaylistHandler);
 
 // Handlers
-function errorHandler(req, res, err) {res.status(500).send(`Error: ${err}`);}
+function errorHandler(req, res, err) { res.status(500).send(`Error: ${err}`); }
 
 function playlistHandler(req, res) {
   spotifyApi.clientCredentialsGrant()
@@ -359,7 +369,7 @@ function deletePlaylistHandler(req, res) {
 
 
 // Constructor
-function Playlist(obj){
+function Playlist(obj) {
   this.description = obj.description;
   this.url = obj.external_urls.spotify;
   this.image = obj.images[0].url;

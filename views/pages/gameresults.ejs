@@ -6,7 +6,8 @@
 </head>
 <body>
 
-  <header><h1><a href="/">Choose Board Games</a></h1></header>
+  <div id ="header"><h1>GAME NIGHT</h1></div>
+  <div id = boardGameHeader><h1>BOARD GAMES</h1> </div>
   <div class='container'>
    
     <% gameInfo.forEach(game => { %>
@@ -14,7 +15,8 @@
       <form id="addGame" action="/favorites" method="POST">
         <fieldset>
           <img src="<%= game.image_url %>">
-          <h2><%= game.name %></h2>
+          <h2>Name: <%= game.name %> </h2>
+          <h3>Rank: <%= game.rank %> || Trending: <%= game.trending %></h3>
           <h3>Min Players: <%= game.min_players %> / Max Players: <%= game.max_players %></h3>
           <p><%= game.description %></p>
       
