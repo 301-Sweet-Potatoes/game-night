@@ -368,7 +368,12 @@ body {
  
 }
 
-
+.fav-boxes>#hotairballoon {
+ grid-column: 3;
+ grid-row: 1;
+ justify-content: center;
+  align-content: center;
+}
 
 
 
@@ -651,5 +656,33 @@ to {transform:rotate(359deg);}
     100% {transform: scale(1) rotate(0);} 
    }
    
- 
+/* balloon(fav page) */
+
+
+ #hotairballoon {
+ height: 300px;	
+ overflow: hidden;
+ position: relative;
+}
+#hotairballoon>#balloon {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ left:50px;
+ /* Starting position */
+ transform-origin: center center;
+ transform:translateY(60%);
+ /* Apply animation to this element */	
+ animation: vertically 8s linear infinite alternate;
+}
+/* Move it (define the animation) */
+
+@keyframes vertically {
+ 0%   { 
+ transform: translateY(100%); 		
+ }
+ 100% { 
+ transform: translateY(0%); 
+ }
+}
     
