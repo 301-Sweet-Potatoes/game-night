@@ -1,5 +1,5 @@
 <section>
-  <form id="addtosavedTrivia" action="/favorites/deletetrivia?_method=DELETE" method="post">
+  <form id="addtosavedTrivia" action="/triviafavs/deletetrivia?_method=DELETE" method="POST">
     <fieldset>
       <h2><%=triviaquestions.question%></h2>
       <h3><%=triviaquestions.correctanswer%></h3>
@@ -10,11 +10,9 @@
       <input type="hidden" name="question" value="<%= triviaquestions.question %>">
       <input type="hidden" name="answer" value="<%= triviaquestions.correctanswer %>">
       <input type="hidden" name="category" value="<%= triviaquestions.category %>">
-      <button type="radio">Save Trivia</button>
+      <button class="deleteButton" type="submit"><img src="../img/deletebutton.png"></button>
     </fieldset>
-    <fieldset>
-      <button type="submit">Save and Return to Favorites Page</button>
-    </fieldset>
+    
   </form>
 
 </section>
