@@ -120,6 +120,13 @@ form label {
   width: 300px;
 }
 
+#not-found>#box-b>#inner{
+  left: inherit;
+}
+
+#not-found h2 {
+  font-size: 2rem;;
+}
 
 /************* favorites - mjm **********/
 
@@ -144,6 +151,28 @@ form label {
 .deleteButton img {
   width: 100px;
   height: 50px;
+}
+
+.favTitle {
+  display:flex;
+  background: url('../img/silverplate1.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100px;
+  font-family: 'Rye', cursive;
+  font-size: 1.2rem;
+  color: black;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.favLink {
+  text-decoration: none;
+  color: black;
 }
 
 /********* ABOUT US PAGE ********/

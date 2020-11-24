@@ -1,7 +1,6 @@
 <% if (playlist) {%>
-<h2><%= playlist.name %></h2>
 <img id="playlist-img-partial" src="<%= playlist.image %>"></img>
-<iframe src="https://open.spotify.com/embed/playlist/<%= playlist.spotifyid %>" width="300" height="380"
+<iframe src="https://open.spotify.com/embed/playlist/<%- playlist.spotifyid %>" width="300" height="380"
   allowtransparency="true" allow="encrypted-media"></iframe>
 <form action="/favorites/playlist?_method=DELETE" method="POST">
   <button class="deleteButton" type="submit">
