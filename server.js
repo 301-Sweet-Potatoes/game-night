@@ -45,11 +45,11 @@ function favoritesHandler(req, res) {
         .then((boardgame) => {
           client.query(SQLTRIVIA)
             .then((trivia) => {
-              res.status(200).render('pages/favorites', { playlist: playlist.rows[0], boardgames: boardgame.rows, trivia: trivia.rows })
+              res.status(200).render('pages/favorites', { playlist: playlist.rows[0], boardgames: boardgame.rows, trivia: trivia.rows });
             })
-            .catch(err => errorHandler(req, res, err))
+            .catch(err => errorHandler(req, res, err));
         })
-        .catch(err => errorHandler(req, res, err))
+        .catch(err => errorHandler(req, res, err));
     })
     .catch(err => errorHandler(req, res, err));
 }
