@@ -86,7 +86,6 @@ https://www.boardgameatlas.com/search/
 
 */
 app.get('/boardgames', (req, res) => {
-  console.log('You made it to Games');
   res.render('pages/boardgames');
 });
 
@@ -100,25 +99,15 @@ function bgamesSearch(req, res) {
   const gameTitle = ('title = ', req.body.gamename);
   let bgOrderBy = (req.body.orderby);
   let bgamesURL = '';
-  // let bgamesURL = `https://api.boardgameatlas.com/api/search?name=${title}&client_id=${clientID}&limit=10`;
-
-  // TODO:   STRETCH GOAL: add back the orderby Trending and Ranking
 
   if (bgOrderBy === 'trending' || bgOrderBy === 'rank') {
     bgamesURL = `https://api.boardgameatlas.com/api/search?order_by=${bgOrderBy}&client_id=${clientID}&limit=10`;
-
-    console.log('Order by = ', bgOrderBy);
-    console.log('Search by Rank or Trending and Title is NULL');
 
   } else {
     // (bgOrderby === 'null');
     bgamesURL = `https://api.boardgameatlas.com/api/search?name=${gameTitle}&client_id=${clientID}&limit=10`;
 
-    console.log('Order by = ', bgOrderBy);
-    console.log('Title is ', gameTitle);
   }
-
-  console.log('URL = ', bgamesURL);
 
   superagent.get(bgamesURL)
     .then(game => {
@@ -144,16 +133,13 @@ function addBG(req, res) {
   const addSQL = `INSERT INTO boardgames (gameid, gamename, min_players, max_players, image_url, game_description) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
   const values = [gameid, gamename, minplay, maxplay, image, descript];
   client.query(addSQL, values)
-    .then(() => res.status(200).redirect('/favorites'));
+    .then(() => res.status(200).redirect('/favorites'))
+    .catch(err => errorHandler(req, res, err));
 
 }
 
 function removeBGames(req, res) {
-  console.log('you made it to remove game!');
-  console.log('Remove ', req.body);
   const delGame = req.body.gameid;
-  console.log('del gameid = ', delGame);
-  // DELETE FROM boardgames WHERE gameid = 'yKJz4SjHER';
   const delSQL = `DELETE FROM boardgames WHERE gameid = $1 RETURNING *;`;
   const values = [delGame];
   client.query(delSQL, values)
@@ -218,27 +204,23 @@ set up a variable amount, category and difficulty.
 // Handlers
 
 function deleteTrivia(req, res) {
-  console.log('ready to delete');
-  const tquestion = req.body.question;
-  console.log('tquestion', tquestion);
-  const deletetrivia = `DELETE FROM trivia WHERE question = $1 RETURNING * ;`;
-  const val = [tquestion];
-  client.query(deletetrivia, val)
+  const triviaId = req.body.triviaId;
+  const deletetrivia = `DELETE FROM trivia WHERE id = $1 RETURNING * ;`;
+  client.query(deletetrivia, [triviaId])
     .then(() => res.status(200).redirect('/favorites'))
     .catch(err => errorHandler(req, res, err));
 }
 
-
-
-
 function triviaQuestions(req, res) {
-  console.log('made it to trivia questions');
-
-
-
-
-
-  res.status(200).render('pages/trivia');
+  // Pre-load random trivia questions
+  const triviaURL = 'https://opentdb.com/api.php?amount=10&type=boolean';
+  superagent.get(triviaURL)
+    .then(trivia => {
+      let result = trivia.body.results;
+      let triviaQuestions = result.map(triviaData => new Trivia(triviaData));
+      res.status(200).render('pages/trivia', { triviaQuestions });
+    })
+    .catch(err => errorHandler(req, res, err));
 }
 
 function addtodb(req, res) {
@@ -263,40 +245,17 @@ function searchTrivia(req, res) {
       let triviaQuestions = result.map(triviaData => {
         return new Trivia(triviaData);
       });
-      res.status(200).render('pages/triviaresults', { triviaQuestions });
+      res.status(200).render('pages/trivia', { triviaQuestions });
     })
     .catch(err => errorHandler(req, res, err));
 }
 
 // Constructor for trivia
-
 function Trivia(obj) {
   this.category = obj.category;
   this.question = obj.question;
   this.correctanswer = obj.correct_answer;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // -------- Playlist Stuff --------------//
 
@@ -366,7 +325,6 @@ function deletePlaylistHandler(req, res) {
     .then(() => res.status(200).redirect('/favorites'))
     .catch(err => errorHandler(req, res, err));
 }
-
 
 // Constructor
 function Playlist(obj) {

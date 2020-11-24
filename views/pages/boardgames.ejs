@@ -8,6 +8,7 @@
 
 <body>
   <header>
+<<<<<<< HEAD
     <div id ="header"><h1>GAME NIGHT</h1></div>
     
     <div class="navbar">
@@ -25,18 +26,29 @@
   <div class = "boardgamesearch">
 
   <div id = "boardGameHeader"><h1>BOARD GAMES</h1> </div>
+=======
+    <%- include('../layout/header') %>
+  </header>
+  <div id="boardGameHeader">
+    <h1>BOARD GAMES</h1>
+  </div>
+
+>>>>>>> 7fc0c5ffb6217b4713dc4fbd7b1aa7e4b0190313
   <div class="container">
-    <form action="/gameresults" method="POST">
-      <label><span>
-         <h3>Find games by:</h3> 
-          <input type="radio" name="orderby" value="trending">Trending
-          <input type="radio" name="orderby" value="rank" >Rank</span>
-      </label>
-      <label><span>
-      <h3>Or Search by Title</h3>
-      <input type="text" name="gamename" placeholder="Title of Game"></span>
-      <p><button id="boardgames" type="submit">Search Games</button></p>
-      </label>
+    <form class="flex-form" action="/gameresults" method="POST">
+      <div class="board-search-container">
+        <h2>Find Games By</h2>
+        <input type="radio" name="orderby" value="trending" id="trending">
+        <label for="trending">Trending</label>
+        <br>
+        <input type="radio" name="orderby" value="rank" id="rank">
+        <label for="rank">Rank</label>
+      </div>
+      <div class="board-search-container">
+        <h2>Or Search by Title</h2>
+        <input type="text" name="gamename" placeholder="Title of Game" id="boardsearch">
+      </div>
+        <button id="boardgames" type="submit">Search Games</button>
     </form>
   </div>
 
