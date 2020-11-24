@@ -153,6 +153,28 @@ form label {
   height: 50px;
 }
 
+.favTitle {
+  display:flex;
+  background: url('../img/silverplate1.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100px;
+  font-family: 'Rye', cursive;
+  font-size: 1.2rem;
+  color: black;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.favLink {
+  text-decoration: none;
+  color: black;
+}
+
 /********* ABOUT US PAGE ********/
 
 #about-us {

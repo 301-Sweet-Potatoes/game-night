@@ -19,21 +19,26 @@
       <div id="fav"><a href="/favorites"><img src="../img/favbutton1.png"></a></div>
     </div>
   </div>
-  
-  <main>
-    <section class = "fav-boxes">
 
-      <div id = "fav-a"><h1>FAVORITES</h1></div>
-      
+  <main>
+    <section class="fav-boxes">
+
+      <div id="fav-a">
+        <h1>FAVORITES</h1>
+      </div>
+
       <div id="decoration1"></div>
-     
+
       <div id="hotairballoon">
         <div id="balloon"><img src="../img/hotair.png"></div>
       </div>
 
       <!-- Trivia Partial -->
-      <div id="fav-b"class="fav-outer">
+      <div id="fav-b" class="fav-outer">
         <div class="fav-inner">
+          <a href="/trivia" class="favLink">
+            <div class="favTitle">Trivia</div>
+          </a>
           <% trivia.forEach(triviaquestions => { %>
           <%- include('../partials/savedtrivia', { triviaquestions }) %>
           <% }) %>
@@ -43,6 +48,9 @@
       <!-- Board Games Partial -->
       <div id="fav-c" class="fav-outer">
         <div class="fav-inner">
+          <a href="/boardgames" class="favLink">
+            <div class="favTitle">Board Games</div>
+          </a>
           <% boardgames.forEach(game => { %>
           <%- include('../partials/favgames', { game }) %>
           <% }) %>
@@ -51,7 +59,10 @@
 
       <!-- Playlist Partial -->
       <div id="fav-d" class="fav-outer">
-        <div class ="fav-inner">
+        <div class="fav-inner">
+          <a href="/playlist" class="favLink">
+            <div class="favTitle">Playlist</div>
+          </a>
           <%- include('../partials/playlist', { playlist }) %>
         </div>
       </div>
