@@ -41,6 +41,7 @@ app.get('/trivia', triviaQuestions);
 app.post('/triviaresults', searchTrivia);
 app.post('/triviafavs', addtodb);
 app.delete('/triviafavs/deletetrivia', deleteTrivia);
+app.get('*', (req, res) => res.status(404).render('pages/404'))
 
 // Route Handlers
 function errorHandler(req, res, err) { res.status(500).send(`Error: ${err}`); }

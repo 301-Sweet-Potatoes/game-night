@@ -120,6 +120,13 @@ form label {
   width: 300px;
 }
 
+#not-found>#box-b>#inner{
+  left: inherit;
+}
+
+#not-found h2 {
+  font-size: 2rem;;
+}
 
 /************* favorites - mjm **********/
 
