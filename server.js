@@ -15,9 +15,10 @@ const app = express();
 const { render } = require('ejs');
 const client = new pg.Client(process.env.DATABASE_URL);
 const SpotifyWebApi = require('spotify-web-api-node');
-const spotifyApi = new SpotifyWebApi({ clientId: SPOTIFY_ID, clientSecret: SPOTIFY_SECRET });
 const SPOTIFY_ID = process.env.SPOTIFY_CLIENT_ID;
 const SPOTIFY_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
+const spotifyApi = new SpotifyWebApi({ clientId: SPOTIFY_ID, clientSecret: SPOTIFY_SECRET });
+const clientID = process.env.MEMBER_ID;
 
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
@@ -45,7 +46,6 @@ app.delete('/triviafavs/deletetrivia', deleteTrivia);
 function errorHandler(req, res, err) { res.status(500).send(`Error: ${err}`); }
 function homeHandler(req, res) {res.status(200).render('index');}
 function aboutUsHandler(req, res) { res.status(200).render('pages/aboutus'); }
-function boardGamesHandler(req, res) { res.status(200).render('pages/boardgames')}
 
 function favoritesHandler(req, res) {
   const SQLPLAYLIST = 'SELECT * FROM playlist;';
@@ -159,8 +159,18 @@ function searchTrivia(req, res) {
     .catch(err => errorHandler(req, res, err));
 }
 
+function boardGamesHandler(req, res) {
+  const bgURL = `https://api.boardgameatlas.com/api/search?order_by=rank&client_id=${clientID}&limit=10`;
+  
+  superagent.get(bgURL)
+    .then(game => {
+      let gameInfo = game.body.games.map(gameData => new Boardgames(gameData));
+      res.status(200).render('pages/boardgames', { gameInfo });
+    })
+    .catch(err => errorHandler(req, res, err));
+}
+
 function bgamesSearch(req, res) {
-  const clientID = process.env.MEMBER_ID;
   const gameTitle = ('title = ', req.body.gamename);
   let bgOrderBy = (req.body.orderby);
   let bgamesURL = '';
@@ -173,8 +183,8 @@ function bgamesSearch(req, res) {
 
   superagent.get(bgamesURL)
     .then(game => {
-      let gameInfo = game.body.games.map(gameData => Boardgames(gameData));
-      res.status(200).render('pages/gameresults', { gameInfo });
+      let gameInfo = game.body.games.map(gameData => new Boardgames(gameData));
+      res.status(200).render('pages/boardgames', { gameInfo });
     })
     .catch(err => errorHandler(req, res, err));
 }
