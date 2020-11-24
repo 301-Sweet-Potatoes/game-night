@@ -204,27 +204,23 @@ set up a variable amount, category and difficulty.
 // Handlers
 
 function deleteTrivia(req, res) {
-  console.log('ready to delete');
-  const tquestion = req.body.question;
-  console.log('tquestion', tquestion);
-  const deletetrivia = `DELETE FROM trivia WHERE question = $1 RETURNING * ;`;
-  const val = [tquestion];
-  client.query(deletetrivia, val)
+  const triviaId = req.body.triviaId;
+  const deletetrivia = `DELETE FROM trivia WHERE id = $1 RETURNING * ;`;
+  client.query(deletetrivia, [triviaId])
     .then(() => res.status(200).redirect('/favorites'))
     .catch(err => errorHandler(req, res, err));
 }
 
-
-
-
 function triviaQuestions(req, res) {
-  console.log('made it to trivia questions');
-
-
-
-
-
-  res.status(200).render('pages/trivia');
+  // Pre-load random trivia questions
+  const triviaURL = 'https://opentdb.com/api.php?amount=10&type=boolean';
+  superagent.get(triviaURL)
+    .then(trivia => {
+      let result = trivia.body.results;
+      let triviaQuestions = result.map(triviaData => new Trivia(triviaData));
+      res.status(200).render('pages/trivia', { triviaQuestions });
+    })
+    .catch(err => errorHandler(req, res, err));
 }
 
 function addtodb(req, res) {
@@ -249,40 +245,17 @@ function searchTrivia(req, res) {
       let triviaQuestions = result.map(triviaData => {
         return new Trivia(triviaData);
       });
-      res.status(200).render('pages/triviaresults', { triviaQuestions });
+      res.status(200).render('pages/trivia', { triviaQuestions });
     })
     .catch(err => errorHandler(req, res, err));
 }
 
 // Constructor for trivia
-
 function Trivia(obj) {
   this.category = obj.category;
   this.question = obj.question;
   this.correctanswer = obj.correct_answer;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // -------- Playlist Stuff --------------//
 
@@ -352,7 +325,6 @@ function deletePlaylistHandler(req, res) {
     .then(() => res.status(200).redirect('/favorites'))
     .catch(err => errorHandler(req, res, err));
 }
-
 
 // Constructor
 function Playlist(obj) {
