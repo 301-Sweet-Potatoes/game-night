@@ -226,8 +226,15 @@ function deleteTrivia(req, res) {
 }
 
 function triviaQuestions(req, res) {
-  console.log('made it to trivia questions');
-  res.status(200).render('pages/trivia');
+  // Pre-load random trivia questions
+  const triviaURL = 'https://opentdb.com/api.php?amount=10&type=boolean';
+  superagent.get(triviaURL)
+    .then(trivia => {
+      let result = trivia.body.results;
+      let triviaQuestions = result.map(triviaData => new Trivia(triviaData));
+      res.status(200).render('pages/trivia', { triviaQuestions });
+    })
+    .catch(err => errorHandler(req, res, err));
 }
 
 function addtodb(req, res) {
@@ -258,7 +265,6 @@ function searchTrivia(req, res) {
 }
 
 // Constructor for trivia
-
 function Trivia(obj) {
   this.category = obj.category;
   this.question = obj.question;
