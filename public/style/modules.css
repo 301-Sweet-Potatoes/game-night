@@ -35,7 +35,7 @@ form label {
   text-transform: uppercase;
   font-size: 1.4rem;
   display: block;
-  margin: 10px;
+  margin: 10px 0px;
 }
 
 .container {
@@ -50,12 +50,25 @@ form label {
 
 .flex-form {
   display: flex;
-  padding: 0 70px;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.flex-form label {
+  flex-basis: 50%;
+  text-align: left;
+}
+
+.flex-form input, .flex-form select {
+  flex-basis: 50%;
+  text-align: left;
+}
+
+.buttonRight {
+  margin-left: auto;
 }
 
 .container button { 
-  margin: 10px;
   cursor: pointer;
   background-color:#ffffff;
   border-radius: 5px;
