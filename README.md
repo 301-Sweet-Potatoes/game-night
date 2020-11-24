@@ -4,12 +4,10 @@ Game Night is an app that allows the users to setup your perfect game night in m
 
 ## Sweet Potatoes Team
 
-
 * [Deanna Johnson](https://www.linkedin.com/in/deanna-johnson406/)
 * [Logan Jones](https://linkedin.com/in/loganemilyjones)
 * [Michael Campbell](https://www.linkedin.com/in/michael-campbell-85a07b103/)
 * [Michael Mandell](https://www.linkedin.com/in/mjmandell/)
-
 
 ## Setup
 
@@ -39,6 +37,26 @@ Game Night is an app that allows the users to setup your perfect game night in m
 [Developer Documents](https://www.boardgameatlas.com/api/docs)
 
 [Try it Out](https://www.boardgameatlas.com/search/)
+
+## Attributions
+
+[Textures for Photoshop](www.textures4photoshop.com)
+
+[Pixabay](www.pixabay.com)
+
+[FreePik](www.freepik.com)
+
+[Gliffy](https://www.gliffy.com/)
+
+[Spotify Web API Node](https://github.com/thelinmichael/spotify-web-api-node)
+
+All the TA's that Helped us out!
+
+and....
+***Raymond Ruazol for putting up with us for 2 months!
+Thank you RAY!***
+
+
 
 ## Wireframes
 
@@ -236,7 +254,7 @@ What will your MVP functionality be?
 
 What are your stretch goals?
 
-* Store multiple “Game Nights” 
+* Store multiple “Game Nights”
 * Add your own trivia questions
 * Add your own playlist
 * Create a shopping/snack list
