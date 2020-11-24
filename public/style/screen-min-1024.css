@@ -77,7 +77,7 @@ body {
   height: 100px;
   width: 500px;
   color: white;
-  margin-left: 38vw;
+  margin:auto;
 }
 
 #triviaHeader>h1 {
@@ -181,6 +181,8 @@ body {
 .boxes>#triviabutton {
   grid-column: 7;
   grid-row: 3;
+  margin-top:0px;
+
 }
 
 /* pipes */
@@ -188,21 +190,29 @@ body {
 .boxes>#piperight {
   grid-column: 5;
   grid-row: 3;
+  background: url('../img/piperight.png');
+  background-repeat:no-repeat;
 }
 
 .boxes>#piperight2 {
   grid-column: 5;
   grid-row: 1;
+  background: url('../img/piperight.png');
+  background-repeat:no-repeat;
 }
 
 .boxes>#pipeleft {
   grid-column: 3;
   grid-row: 3;
+  background: url('../img/pipeleft.png');
+  background-repeat:no-repeat;
 }
 
 .boxes>#pipeleft2 {
   grid-column: 3;
   grid-row: 1;
+  background: url('../img/pipeleft.png');
+  background-repeat:no-repeat;
 }
 
 /* /////////////// */
@@ -291,6 +301,7 @@ body {
 }
 
 .boxes>#box-d>.contraption>#box-5>h2 {
+  font-family: 'Rye', cursive;
   color: black;
   text-align: center;
   margin: auto;
@@ -327,6 +338,7 @@ body {
 .boxes>#favbutton {
   grid-column: 7;
   grid-row: 1;
+  margin-top:0px;
 }
 
 /* Favorites Page  */
