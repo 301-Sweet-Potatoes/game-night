@@ -38,7 +38,7 @@ app.post('/favorites', addBG);
 app.delete('/favorites/favgames', removeBGames);
 app.get('/boardgames', boardGamesHandler);
 app.get('/trivia', triviaQuestions);
-app.post('/triviaresults', searchTrivia);
+app.post('/trivia', searchTrivia);
 app.post('/triviafavs', addtodb);
 app.delete('/triviafavs/deletetrivia', deleteTrivia);
 app.get('*', (req, res) => res.status(404).render('pages/404'))
@@ -150,7 +150,25 @@ function addtodb(req, res) {
 }
 
 function searchTrivia(req, res) {
-  const triviaURL = `https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=boolean`;
+  
+  let category;
+  let level = req.body.level;
+
+  switch (req.body.category) { 
+    case 'random':
+      category = '';
+      break;
+    case 'computers':
+      category = 18;
+      break;
+    case 'video-games':
+      category = 15;
+      break;
+    default:
+      category = '';
+  }
+
+  const triviaURL = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${level}&type=boolean`;
   superagent.get(triviaURL)
     .then(trivia => {
       let result = trivia.body.results;
@@ -159,6 +177,7 @@ function searchTrivia(req, res) {
     })
     .catch(err => errorHandler(req, res, err));
 }
+
 
 function boardGamesHandler(req, res) {
   const bgURL = `https://api.boardgameatlas.com/api/search?order_by=rank&client_id=${clientID}&limit=10`;

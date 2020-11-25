@@ -30,13 +30,18 @@
 </div>
 
 <div class="container">
-  <form class="flex-form" action="/triviaresults" method="POST">
-    <label for="questions">Number Questions</label>
-    <input type="number" placeholder="Enter number to up to 10" name="Questions" min="1" max="10" required>
+  <form class="flex-form" action="/trivia" method="POST">
     <label for="category">Category</label>
     <select id="category" name="category">
-      <option value="General Knowledge">Music</option>
-      <option value="movies">Movies</option>
+      <option value='random'>Random</option>
+      <option value='computers'>Computers</option>
+      <option value='video-games'>Video Games</option>
+    </select>
+    <label for="level">Difficulty</label>
+    <select id="level" name="level">
+      <option value='easy'>Easy</option>
+      <option value='medium'>Medium</option>
+      <option value='hard'>Hard</option>
     </select>
     <button type="submit" class="buttonRight">Search</button>
   </form>
