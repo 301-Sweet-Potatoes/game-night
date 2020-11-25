@@ -116,57 +116,6 @@ body {
   align-content: center;
 }
 
-/* Nav Bar */
-
-.navbar>.nav {
-  display: grid;
-  grid-template-columns: 100px;
-  grid-template-rows: 5px 50px 5px 50px 5px 50px 5px 50px 5px 50px 5px 50px ;
-  padding: 0px;
-  justify-content: center;
-  align-content: center;
- 
-  float: left;
-}
-
-.navbar>.nav>#home {
-  grid-column: 1;
-  grid-row: 2;
-  background-color: white;
-}
-
-.navbar>.nav>#about {
-  grid-column: 1;
-  grid-row: 4;
-  background-color: white;
-}
-
-.navbar>.nav>#fav {
-  grid-column: 1;
-  grid-row: 6;
-  background-color: white;
-}
-
-.navbar>.nav>#playlist-nav {
-  grid-column: 1;
-  grid-row: 8;
-  background-color: white;
-}
-
-.navbar>.nav>#boardgame-nav {
-  grid-column: 1;
-  grid-row: 10;
-  background-color: white;
-}
-
-.navbar>.nav>#trivia-nav {
-  grid-column: 1;
-  grid-row: 12;
-  background-color: white;
-}
-
-
-
 /* ///////////// */
 
 .boxes>#gearbox {

@@ -99,7 +99,6 @@ fieldset p {
   width: 100%;
 }
 
-
 .container button { 
   cursor: pointer;
   background-color:#ffffff;
@@ -201,3 +200,52 @@ fieldset p {
   border-radius: 50%;
   margin: 25px;
 }
+
+
+/**** Header *****/
+
+header {
+  background: url('../img/goldbar.jpg');
+  background-repeat: repeat-x;
+  height: 100px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+header h1 {
+  font-family: 'Abril Fatface', cursive;
+  color: black;
+  font-size: 3rem;
+}
+
+header a {
+  text-decoration: none;
+}
+
+nav img {
+  background-color: white;
+}
+
+#small-nav {
+  display: none;
+}
+
+@media only screen and (max-width: 950px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+}
+
+@media only screen and (max-width: 800px) {
+  header h1, #big-nav {
+    display: none;
+  }
+
+  #small-nav {
+    display: flex;
+  }
+}
+
