@@ -81,6 +81,10 @@ form label {
   margin-bottom: 30px;
 }
 
+fieldset p {
+  margin: 25px;
+}
+
 #trending, #rank {
   height: inherit;
   width: auto;
