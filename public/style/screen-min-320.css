@@ -2,25 +2,6 @@ body {
   background: url('../img/gold768.png');
 }
 
-/* //universal header */
-
-#header {
-  display: inline-block;
-  background: url('../img/goldbar.jpg');
-  background-repeat: repeat-x;
-  height: 30px;
-  width: 100%;
-  padding: 0px;
-}
-
-#header>h1 {
-  font-family: 'Abril Fatface', cursive;
-  color: black;
-  text-align: center;
-  font-size: 15px;  
-}
-
-
 .boxes {
   display: grid;
   grid-template-columns: 100px 250px 250px 100px;
