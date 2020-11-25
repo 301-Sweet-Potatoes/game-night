@@ -41,12 +41,14 @@ app.get('/trivia', triviaQuestions);
 app.post('/trivia', searchTrivia);
 app.post('/triviafavs', addtodb);
 app.delete('/triviafavs/deletetrivia', deleteTrivia);
-app.get('*', (req, res) => res.status(404).render('pages/404'))
+app.get('/404', notFoundHandler);
+app.get('*', (req, res) => res.status(404).redirect('/404'))
 
 // Route Handlers
 function errorHandler(req, res, err) { res.status(500).send(`Error: ${err}`); }
 function homeHandler(req, res) {res.status(200).render('index');}
 function aboutUsHandler(req, res) { res.status(200).render('pages/aboutus'); }
+function notFoundHandler(req, res) { res.status(200).render('pages/404'); }
 
 function favoritesHandler(req, res) {
   const SQLPLAYLIST = 'SELECT * FROM playlist;';
