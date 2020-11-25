@@ -205,43 +205,6 @@ hr:after {
   background: transparent;
 }
 
-.fav-boxes {
-  display: grid;
-  grid-template-columns: 180px 5px 250px 250px 5px 250px 250px 5px 250px 250px;
-  grid-template-rows: 200px 200px 50px 250px 50px 250px 50px;
-  padding: 30px;
-  justify-content: center;
-  align-content: center;
-}
-
-.fav-boxes>#fav-b {
-  grid-column: 2 / 3;
-  grid-row: 1 / 7;
-  background: url("../img/favframe1.png");
-  height: 750px;
-  width: 500px;
-  color: white;
-}
-
-.fav-boxes>#fav-c {
-  grid-column: 6 / 7;
-  grid-row: 1 / 7;
-  background: url("../img/favframe1.png");
-  height: 750px;
-  width: 500px;
-  color: white;
-}
-
-.fav-boxes>#fav-d {
-  grid-column: 9 / 10;
-  grid-row: 1 / 7;
-  background: url("../img/favframe1.png");
-  height: 750px;
-  width: 500px;
-  color: white;
-  float: left;
-}
-
 .boxes>#gearbox {
   position: relative;
   top: 0px;
