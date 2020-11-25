@@ -25,63 +25,37 @@
   </div>
   </header>
 
-  <center><div id = "triviaHeader"><h1>TRIVIA</h1> </div></center>
-  <div class="container">
-    <form action="/triviaresults" method="POST">
+<div id="triviaHeader">
+  <h1>TRIVIA</h1>
+</div>
 
-      <div class="flex-form">
-        <label for="questions">Up to 10 Questions Questions</label>
-        <input type="number" placeholder="How many Questions?" name="Questions" min="1" max="10"required>
-      </div>
-      <div class="flex-form">
-        <label for="category">Category</label>
-        <select id="category" name="category">
-          <option value="General Knowledge">Music</option>
-          <option value="movies">Movies</option>
-        </select>
-      </div>
-      <button type="submit">Search</button>
+<div class="container">
+  <form class="flex-form" action="/triviaresults" method="POST">
+    <label for="questions">Number Questions</label>
+    <input type="number" placeholder="Enter number to up to 10" name="Questions" min="1" max="10" required>
+    <label for="category">Category</label>
+    <select id="category" name="category">
+      <option value="General Knowledge">Music</option>
+      <option value="movies">Movies</option>
+    </select>
+    <button type="submit" class="buttonRight">Search</button>
+  </form>
 
-    <%- include('../layout/header') %>
-  </header>
-
-  
-
-  <div class="container">
-    <form class="flex-form" action="/triviaresults" method="POST">
-      <label for="questions">Number Questions</label>
-      <input type="number" placeholder="Enter number to up to 10" name="Questions" min="1" max="10" required>
-      <label for="category">Category</label>
-      <select id="category" name="category">
-        <option value="General Knowledge">Music</option>
-        <option value="movies">Movies</option>
-      </select>
-      <button type="submit" class ="buttonRight">Search</button>
-    </form>
-
-
-    <% if (typeof(triviaQuestions) !== 'undefined') { %>
-    <% triviaQuestions.forEach(pumpkin => { %>
-    <form id="addtosavedTrivia" action="/triviafavs" method="POST">
-      <fieldset>
-        <h2><%-pumpkin.question%></h2>
-        <h3><%-pumpkin.correctanswer%></h3>
-        <input type="hidden" name="question" value="<%- pumpkin.question %>">
-        <input type="hidden" name="answer" value="<%- pumpkin.correctanswer %>">
-        <input type="hidden" name="category" value="<%- pumpkin.category %>">
-        <button type="submit">Save Trivia</button>
-      </fieldset>
-    </form>
-    <% }) %>
-    <% } %>
-
-  </div>
-=======
-
-<!-- <footer>
-  <div id ="footer"></div>
-</footer> -->
-
+  <% if (typeof(triviaQuestions) !== 'undefined') { %>
+  <% triviaQuestions.forEach(pumpkin => { %>
+  <form id="addtosavedTrivia" action="/triviafavs" method="POST">
+    <fieldset>
+      <h2><%-pumpkin.question%></h2>
+      <h3><%-pumpkin.correctanswer%></h3>
+      <input type="hidden" name="question" value="<%- pumpkin.question %>">
+      <input type="hidden" name="answer" value="<%- pumpkin.correctanswer %>">
+      <input type="hidden" name="category" value="<%- pumpkin.category %>">
+      <button type="submit">Save Trivia</button>
+    </fieldset>
+  </form>
+  <% }) %>
+  <% } %>
+</div>
 </body>
 
 </html>
