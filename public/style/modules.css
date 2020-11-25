@@ -1,4 +1,64 @@
-/********* FEATURE PAGES ********/
+/**** Header *****/
+
+header {
+  background: url('../img/goldbar.jpg');
+  background-repeat: repeat-x;
+  height: 100px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+header h1 {
+  font-family: 'Abril Fatface', cursive;
+  color: black;
+  font-size: 3rem;
+}
+
+header a {
+  text-decoration: none;
+}
+
+nav img {
+  background-color: white;
+}
+
+#small-nav {
+  display: none;
+}
+
+@media only screen and (max-width: 950px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+}
+
+@media only screen and (max-width: 800px) {
+  header h1, #big-nav {
+    display: none;
+  }
+
+  #small-nav {
+    display: flex;
+  }
+}
+
+.container button { 
+  cursor: pointer;
+  background-color:#ffffff;
+  border-radius: 5px;
+  border: none;
+  text-decoration:none;
+  padding: 5px;
+  height: 2rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+
+/********* Feature Pages Shared Styles ********/
 h1 a {
   text-decoration: none;
   text-transform: uppercase;
@@ -56,7 +116,6 @@ form label {
   padding: 10px;
 }
 
-
 .flex-form label {
   flex-basis: 50%;
   text-align: left;
@@ -71,6 +130,12 @@ form label {
   margin-left: auto;
 }
 
+fieldset p {
+  margin: 25px;
+}
+
+/***** Board Games Page  *****/
+
 .board-search-container {
   width: 50%;
   text-align: left;
@@ -79,10 +144,6 @@ form label {
 .board-search-container h2 {
   text-align: center;
   margin-bottom: 30px;
-}
-
-fieldset p {
-  margin: 25px;
 }
 
 #trending, #rank {
@@ -99,21 +160,7 @@ fieldset p {
   width: 100%;
 }
 
-.container button { 
-  cursor: pointer;
-  background-color:#ffffff;
-  border-radius: 5px;
-  border: none;
-  text-decoration:none;
-  padding: 5px;
-  height: 2rem;
-  font-size: 1rem;
-  text-transform: uppercase;
-}
-
-#search-result {
-  margin: 25px auto;
-}
+/****** Playlist Page ******/
 
 .playlist-img {
   height: 380px;
@@ -123,15 +170,7 @@ fieldset p {
   width: 300px;
 }
 
-#not-found>#box-b>#inner{
-  left: inherit;
-}
-
-#not-found h2 {
-  font-size: 2rem;;
-}
-
-/************* favorites - mjm **********/
+/************* Favorites **********/
 
 .fav-outer {
   text-align: center;
@@ -178,7 +217,7 @@ fieldset p {
   color: black;
 }
 
-/********* ABOUT US PAGE ********/
+/***** About Us Page *****/
 
 #about-us {
   display: flex;
@@ -202,50 +241,18 @@ fieldset p {
 }
 
 
-/**** Header *****/
+/****** Not Found / 404 Page ******/
 
-header {
-  background: url('../img/goldbar.jpg');
-  background-repeat: repeat-x;
-  height: 100px;
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+#not-found>#box-b>#inner{
+  left: inherit;
 }
 
-header h1 {
-  font-family: 'Abril Fatface', cursive;
-  color: black;
-  font-size: 3rem;
+#not-found {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid white;
+  border-radius: 12px;
 }
 
-header a {
-  text-decoration: none;
+#not-found h2 {
+  font-size: 2rem;;
 }
-
-nav img {
-  background-color: white;
-}
-
-#small-nav {
-  display: none;
-}
-
-@media only screen and (max-width: 950px) {
-  header h1 {
-    font-size: 2rem;
-  }
-
-}
-
-@media only screen and (max-width: 800px) {
-  header h1, #big-nav {
-    display: none;
-  }
-
-  #small-nav {
-    display: flex;
-  }
-}
-
