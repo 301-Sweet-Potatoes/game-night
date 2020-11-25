@@ -318,7 +318,6 @@ hr:after {
   display: grid;
   grid-template-columns: 180px 5px 250px 250px 5px 250px 250px 5px 250px 250px;
   grid-template-rows: 200px 200px 50px 250px 50px 250px 50px;
-  /* margin: auto; */
   padding: 30px;
   justify-content: center;
   align-content: center;
@@ -356,19 +355,7 @@ hr:after {
     color: white;
     float: left;
   }
-  /* Universal Footer */
-  /* #footer {
-    position: fixed;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    background: url('../img/goldbar.jpg');
-    background-repeat: repeat-x;
-    height: 55px;
-    width: 100%;
-  } */
-  /* animations */
-  /* Gears */
+
   .boxes>#gearbox {
     position: relative;
     top: 0px;
@@ -545,7 +532,6 @@ hr:after {
     animation-name: bounce;
     perspective: 1200px;
     animation-timing-function: ease-in-out;
-    /* animation-fill-mode: both; */
     animation-iteration-count: infinite;
     animation-duration: 5s;
     -webkit-animation-name: bounce;
