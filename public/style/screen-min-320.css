@@ -6,10 +6,8 @@ body {
   display: grid;
   grid-template-columns: 100px 250px 250px 100px;
   grid-template-rows: 850px 65px 250px 65px 250px 85px;
- 
   padding: 0px;
   justify-content: center;
-  align-content: center;
 }
 
 .boxes>#gearbox {
@@ -19,7 +17,6 @@ body {
   height: 250px;
   width: 225px;
   border: 5px solid black;
-  padding: 0px;
 }
 
 .boxes>#triviabutton {
@@ -63,21 +60,17 @@ body {
   float: right;
 }
 
-
-
 .boxes>#box-d>.contraption {
   display: grid;
   grid-template-columns: 250px 250px;
   grid-template-rows: 100px 250px 250px 150px 100px;
   background-color: darkgray;
-  padding: 0px;
 }
 
 .boxes>#box-d>.contraption>#box-1 {
   grid-column: 1 / span 2;
   grid-row: 1;
   background: url('../img/silverplate4.png');
-  padding: 0px;
 }
 
 .boxes>#box-d>.contraption>#box-1 h1 {
@@ -92,7 +85,6 @@ body {
   grid-column: 1;
   grid-row: 2;
   background-color: black;
-  margin: 0px;
 }
 
 .boxes>#box-d>.contraption>#box-3 {
@@ -118,8 +110,6 @@ body {
   grid-row: 4;
   background: url("../img/gauges1.png");
   background-repeat: repeat-x;
-  padding: 0px;
-  margin: 0px;
 }
 
 .boxes>#box-d>.contraption>#box-7 {
@@ -127,8 +117,6 @@ body {
   grid-row: 5;
   background: url('../img/metalrustybg.png');
   background-repeat: repeat-x;
-  padding: 0px;
-  margin: 0px;
 }
 
 .boxes>#box-e {
@@ -137,14 +125,12 @@ body {
   background: url("../img/silverswirl.png");
   height: 150px;
   width: 225px;
-  ;
 }
 
 .boxes>#favbutton {
   grid-column: 3;
   grid-row: 5;
   margin-top: 150px;
-  float: left;
 }
 
 #aboutUsHeader {
@@ -258,7 +244,6 @@ body {
   grid-column: 2 / span 3;
   grid-row: 1;
   padding: 0px;
-  
   align-content: center;
 }
 
@@ -278,8 +263,6 @@ body {
   color: white;
 }
 
-
-
 .fav-boxes>#fav-c {
   grid-column: 2 / 3;
   grid-row: 6;
@@ -288,8 +271,6 @@ body {
   width: 500px;
   color: white;
 }
-
-
 
 .fav-boxes>#fav-d {
   grid-column: 2 / 3;
@@ -312,7 +293,6 @@ body {
 }
 
 /* animations */
-
 .boxes>#gearbox {
   position: relative;
   top: 0px;
@@ -444,7 +424,6 @@ body {
 }
 
 #boxes>#box-b {
-  /* align-self: flex-end; */
   animation-duration: 2s;
   animation-iteration-count: infinite;
   background-color: black;
@@ -516,7 +495,6 @@ body {
   animation-name: bounce;
   perspective: 1200px;
   animation-timing-function: ease-in-out;
-  /* animation-fill-mode: both; */
   animation-iteration-count: infinite;
   animation-duration: 5s;
   -webkit-animation-name: bounce;
