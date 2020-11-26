@@ -10,55 +10,44 @@
 
   <header>
 
-    <div id ="header"><h1>GAME NIGHT</h1></div>
-    
+    <div id="header">
+      <h1>GAME NIGHT</h1>
+    </div>
+
     <div class="navbar">
-    <div class = "nav">
-    
-    <div id="home"><a href="/"><img src="../img/homebutton.png"></a></div>
-    <div id="about"><a href="/aboutus"><img src="../img/aboutbutton.png"></a></div>
-    <div id="fav"><a href="/favorites"><img src="../img/favbutton1.png"></a></div>
-    <div id="playlist-nav"><a href="/playlist"><img src="../img/playlist-button-nav.png"></a></div>
-    <div id="boardgame-nav"><a href="/boardgames"><img src="../img/boardgame-button-nav.png"></a></div>
-    <div id="trivia-nav"><a href="/trivia"><img src="../img/trivia-button-nav.png"></a></div>
-   </div>
+      <div class="nav">
+
+        <div id="home"><a href="/"><img src="../img/homebutton.png"></a></div>
+        <div id="about"><a href="/aboutus"><img src="../img/aboutbutton.png"></a></div>
+        <div id="fav"><a href="/favorites"><img src="../img/favbutton1.png"></a></div>
+        <div id="playlist-nav"><a href="/playlist"><img src="../img/playlist-button-nav.png"></a></div>
+        <div id="boardgame-nav"><a href="/boardgames"><img src="../img/boardgame-button-nav.png"></a></div>
+        <div id="trivia-nav"><a href="/trivia"><img src="../img/trivia-button-nav.png"></a></div>
+      </div>
+    </div>
+  </header>
+
+
+  <div id="triviaHeader">
+    <h1>TRIVIA</h1>
   </div>
-  </header>
-
-  <center><div id = "triviaHeader"><h1>TRIVIA</h1> </div></center>
-  <div class="container">
-    <form action="/triviaresults" method="POST">
-
-      <div class="flex-form">
-        <label for="questions">Up to 10 Questions Questions</label>
-        <input type="number" placeholder="How many Questions?" name="Questions" min="1" max="10"required>
-      </div>
-      <div class="flex-form">
-        <label for="category">Category</label>
-        <select id="category" name="category">
-          <option value="General Knowledge">Music</option>
-          <option value="movies">Movies</option>
-        </select>
-      </div>
-      <button type="submit">Search</button>
-
-    <%- include('../layout/header') %>
-  </header>
-
-  
 
   <div class="container">
-    <form class="flex-form" action="/triviaresults" method="POST">
-      <label for="questions">Number Questions</label>
-      <input type="number" placeholder="Enter number to up to 10" name="Questions" min="1" max="10" required>
+    <form class="flex-form" action="/trivia" method="POST">
       <label for="category">Category</label>
       <select id="category" name="category">
-        <option value="General Knowledge">Music</option>
-        <option value="movies">Movies</option>
+        <option value='random'>Random</option>
+        <option value='computers'>Computers</option>
+        <option value='video-games'>Video Games</option>
       </select>
-      <button type="submit" class ="buttonRight">Search</button>
+      <label for="level">Difficulty</label>
+      <select id="level" name="level">
+        <option value='easy'>Easy</option>
+        <option value='medium'>Medium</option>
+        <option value='hard'>Hard</option>
+      </select>
+      <button type="submit" class="buttonRight">Search</button>
     </form>
-
 
     <% if (typeof(triviaQuestions) !== 'undefined') { %>
     <% triviaQuestions.forEach(pumpkin => { %>
@@ -74,14 +63,7 @@
     </form>
     <% }) %>
     <% } %>
-
   </div>
-=======
-
-<!-- <footer>
-  <div id ="footer"></div>
-</footer> -->
-
 </body>
 
 </html>
