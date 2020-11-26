@@ -1,30 +1,80 @@
 body {
   background: url('../img/gold768.png');
-  background-repeat: repeat-x;
-  background-color:brown; 
-
 }
 
-header {
+/* //universal header */
+
+#header {
   display: inline-block;
   background: url('../img/goldbar.jpg');
   background-repeat: repeat-x;
   height: 100px;
   width: 100%;
-  padding: 0px;
+  padding: 25px;
 }
 
-header>h1 {
+#header>h1 {
   font-family: 'Abril Fatface', cursive;
   color: black;
   text-align: center;
-  font-size: 35px;
+  font-size: 60px;
+  margin-left: 85px;
+}
+
+
+/* navbar */
+
+.navbar>.nav {
+  display: grid;
+  grid-template-columns: 100px;
+  grid-template-rows: 5px 50px 5px 50px 5px 50px 5px 50px 5px 50px 5px 50px;
+  padding: 0px;
+  justify-content: center;
+  align-content: center;
+ 
+  float: left;
+}
+
+.navbar>.nav>#home {
+  grid-column: 1;
+  grid-row: 2;
+  background-color: white;
+}
+
+.navbar>.nav>#about {
+  grid-column: 1;
+  grid-row: 4;
+  background-color: white;
+}
+
+.navbar>.nav>#fav {
+  grid-column: 1;
+  grid-row: 6;
+  background-color: white;
+}
+
+.navbar>.nav>#playlist-nav {
+  grid-column: 1;
+  grid-row: 8;
+  background-color: white;
+}
+
+.navbar>.nav>#boardgame-nav {
+  grid-column: 1;
+  grid-row: 10;
+  background-color: white;
+}
+
+.navbar>.nav>#trivia-nav {
+  grid-column: 1;
+  grid-row: 12;
+  background-color: white;
 }
 
 .boxes {
   display: grid;
   grid-template-columns: 100px 250px 250px 100px ;
-  grid-template-rows: 850px 50px 250px 50px 250px 50px ;
+  grid-template-rows: 850px 65px 250px 65px 250px 85px ;
   /* margin-top: 50px; */
   padding: 0px;
   justify-content: center;
@@ -41,14 +91,12 @@ header>h1 {
   padding: 0px;
   
 }
-
-/* .boxes>#triviabutton {
+.boxes>#triviabutton {
   grid-column: 2;
-  grid-row: 1;
-  position: relative;
-  top: 30px;
-  left: 35px;
-} */
+  grid-row: 5;
+  margin-top: 150px;
+}
+
 
 .boxes>#box-b {
   grid-column: 3;
@@ -56,6 +104,11 @@ header>h1 {
   background-color: black;
   height: 250px;
   width: 225px;
+}
+
+.boxes>#gamesbutton {
+  grid-column: 3;
+  grid-row: 4;
 }
 
 .boxes>#box-c {
@@ -67,7 +120,10 @@ header>h1 {
 }
 
 
-
+.boxes>#playlistbutton {
+  grid-column: 2;
+  grid-row: 4;
+}
 
 
 .boxes>#box-d {
@@ -129,6 +185,13 @@ header>h1 {
   background: url("../img/frame.png");
 }
 
+.boxes>#box-d>.contraption>#box-5>h2 {
+ color: black;
+ font-family: 'Rye', cursive;
+ text-align:center;
+ padding: 30px;
+}
+
 .boxes>#box-d>.contraption>#box-6 {
   grid-column: 1 / span 2;
   grid-row: 4;
@@ -156,13 +219,93 @@ header>h1 {
   ;
 }
 
-/* .boxes>#favbutton {
-  grid-column: 5;
-  grid-row: 1;
-  position: relative;
-  top: 30px;
-  left: 35px;
-} */
+.boxes>#favbutton {
+  grid-column: 3;
+  grid-row: 5;
+  margin-top: 150px;
+  float:left;
+}
+
+#aboutUsHeader {
+  background: url('../img/silverplate4.png');
+  height: 100px;
+  width: 500px;
+  color: white;
+  margin-left: 20vw;
+}
+
+#aboutUsHeader>h1 {
+  font-family: 'Rye', cursive;
+  font-size: 40px;
+  color: black;
+  padding: 20px;
+  text-align: center;
+}
+
+#boardGameHeader {
+  background: url('../img/silverplate4.png');
+  height: 100px;
+  width: 500px;
+  color: white;
+  margin-left: 20vw;
+}
+
+#boardGameHeader>h1 {
+  font-family: 'Rye', cursive;
+  font-size: 40px;
+  color: black;
+  padding: 20px;
+  text-align: center;
+}
+
+#playListHeader {
+  background: url('../img/silverplate4.png');
+  height: 100px;
+  width: 500px;
+  color: white;
+  margin-left: 20vw;
+  
+}
+
+#playListHeader>h1 {
+  font-family: 'Rye', cursive;
+  font-size: 40px;
+  color: black;
+  padding: 20px;
+  text-align: center;
+}
+
+#triviaHeader {
+  background: url('../img/silverplate4.png');
+  height: 100px;
+  width: 500px;
+  color: white;
+  margin:auto;
+}
+
+#triviaHeader>h1 {
+  font-family: 'Rye', cursive;
+  font-size: 40px;
+  color: black;
+  padding: 20px;
+  text-align: center;
+}
+
+#favHeader {
+  background: url('../img/silverplate4.png');
+  height: 100px;
+  width: 500px;
+  color: white;
+  margin-left: 20vw;
+}
+
+#favHeader>h1 {
+  font-family: 'Rye', cursive;
+  font-size: 40px;
+  color: black;
+  padding: 30px;
+  text-align: center;
+}
 
  .fav-boxes {
   display: grid;
@@ -211,16 +354,7 @@ header>h1 {
     width: 500px;
     color: white;
   }
-  /* .fav-boxes>#fav-b>#trivaddbutton {
-    position: absolute;
-    top: 1000px;
-    left: 120px;
-  }
-  .fav-boxes>#fav-b>#trivdelbutton {
-    position: absolute;
-    top: 1000px;
-    left: 480px;
-  } */
+  
   .fav-boxes>#fav-c {
     grid-column: 2 / 3;
     grid-row: 6;
@@ -229,16 +363,7 @@ header>h1 {
     width: 500px;
     color: white;
   }
-  /* .fav-boxes>#fav-c>#gameaddbutton {
-    position: absolute;
-    top: 1000px;
-    left: 720px;
-  }
-   .fav-boxes>#fav-c>#gamedelbutton {
-    position: absolute;
-    top: 1000px;
-    left: 1080px;
-  } */
+  
   .fav-boxes>#fav-d {
     grid-column: 2 / 3;
     grid-row: 8;
@@ -248,16 +373,7 @@ header>h1 {
     color: white;
     float: left;
   }
-  /* .fav-boxes>#fav-d>#playaddbutton {
-    position: absolute;
-    top: 1000px;
-    left: 1320px;
-  }
-   .fav-boxes>#fav-d>#playdelbutton {
-    position: absolute;
-    top: 1000px;
-    left: 1680px;
-  } */
+  
   #footer {
     position: fixed;
     left: 0;
